@@ -1,4 +1,15 @@
+---
+title: "API_1"
+author: "Sangeetha"
+date: "2022-09-14"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
 library(httr)
 library(jsonlite)
 
@@ -15,4 +26,5 @@ response <- VERB("GET", url, add_headers('X-RapidAPI-Key' = 'e120aadac9msh368877
 data = content(response, "text")
 data_json = fromJSON(data, flatten = TRUE)
 write.csv(data_json, "data_json.csv", row.names = FALSE)
+```
 
