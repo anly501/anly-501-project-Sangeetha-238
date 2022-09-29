@@ -1,5 +1,4 @@
 
-
 # SYNC LOCAL VERSION OF WEBSITE TO GU-DOMAINS SERVER
 rsync -alvr --delete  501-project-website skramesh@gtown3.reclaimhosting.com:/home/skramesh/public_html/
 
