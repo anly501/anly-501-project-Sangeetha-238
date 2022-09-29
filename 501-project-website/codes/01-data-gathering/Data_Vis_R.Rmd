@@ -1,0 +1,39 @@
+---
+title: "Data_visualisation"
+author: "Sangeetha"
+date: "2022-09-28"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+data = read_csv('Forecast_new.csv')
+DC_2020 = read_csv('DC_2020.csv')
+DC_2021 = read_csv('DC_2021.csv')
+colnames(data)
+```
+
+
+```{r}
+ggplot(data, aes(x = AvgMaxtemp, y = Ozone, colour = Year, group = Year)) +
+  geom_line() + scale_color_gradient(low = "yellow", high = "red", na.value = NA) + labs(x= "Monthly Average Max temp", y = "Ozone Pollutant in the air") + ggtitle("Ozone pollutant in Air vs Monthly Avg Max temp")
+
+```
+
+
+```{r}
+
+p1 = ggplot(DC_2020, aes(x=DC_2020$snow, y=DC_2020$snowdepth)) +
+  geom_col() + labs(x= "Snowfall in DC in 2020", y = "Snow Depth" ) + ggtitle("Snow fall 2020 in DC")
+
+p2 = ggplot(DC_2021, aes(x=DC_2021$snow, y=DC_2021$snowdepth)) +
+  geom_col() + labs(x= "Snowfall in DC in 2021", y = "Snow Depth" ) + ggtitle("Snow fall 2021 in DC")
+library(patchwork)
+
+p1 + p2
+```
+
+

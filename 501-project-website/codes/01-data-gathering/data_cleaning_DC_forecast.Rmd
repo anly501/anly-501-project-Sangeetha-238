@@ -1,0 +1,104 @@
+---
+title: "Data Cleaning"
+author: "Sangeetha"
+date: "2022-09-27"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+df = read_csv('DC_two_year.csv')
+air_df_2020 = read_csv('Air_Data_DC_2020.csv')
+air_df_2021 = read_csv('Air_Data_DC_2021.csv')
+```
+
+
+```{r}
+
+air_df_2020$Date <- as.Date(air_df_2020$Date , format = "%d/%m/%y")
+air_df_2021$Date <- as.Date(air_df_2021$Date , format = "%d/%m/%y")
+
+air_df_2020[order(air_df_2020$Date ),]
+air_df_2021[order(air_df_2021$Date ),]
+
+
+air_data_2020 = air_df_2020 %>% filter(air_df_2020$Date > '2020-09-01')
+air_data_2021 = air_df_2021 %>% filter(air_df_2021$Date < '2021-09-30')
+air_data_2020
+air_data_2021
+
+```
+```{r}
+#merge two dataframes to avoid duplicate data
+air_data = rbind(air_data_2020,air_data_2021)
+
+```
+
+```{r}
+#Remove Unwanted columns
+df = select(df, -moonphase, -severerisk, -description, -sunrise, -sunset, -stations)
+colnames(df)
+air_data = select(air_data, -STATE_CODE,-COUNTY_CODE,-COUNTY,-SITE_LATITUDE, -Source, -POC,-CBSA_CODE,-CBSA_NAME, -SITE_LATITUDE,-SITE_LONGITUDE)
+
+```
+
+```{r}
+#Seperate the data year wise
+df_2020 = df %>% filter(datetime > '2021-09-30')
+df_2020
+df_2021 = df %>% filter(between(datetime, as.Date('2020-09-01'), as.Date('2021-09-01')))
+df_2021
+
+```
+
+```{r}
+#Not removing NA values as we need the data for analysis
+
+#checking for duplicates
+sum(anyDuplicated(df_2020)) #-no duplicates
+```
+
+```{r}
+sum(anyDuplicated(df_2021)) #-no duplicates
+duplicates = sum(anyDuplicated(air_data)) #-187 duplicate data
+duplicates
+air_data = unique(air_data)
+air_data # -0 dupliates
+```
+```{r}
+#Finding corelation between data
+df_2020 = df_2020 %>%
+  rename(Date = datetime)
+
+#merging and renaming two data frames
+df_2021 = df_2021 %>%
+  rename(Date = datetime)
+new_forecast_data = merge(df_2021, air_data[c("Daily Max 8-hour Ozone Concentration", "Date")], by = "Date",all.x= TRUE)
+
+
+```
+
+
+```{r}
+#summary of each data frame
+summary_of_2020 = summary(df_2020)
+summary_of_2021 = summary(df_2021)
+summary_of_airData = summary(air_data)
+```
+
+```{r}
+summary_of_2020
+summary_of_2021
+summary_of_airData
+```
+
+```{r}
+write_csv(df_2020, 'DC_2020.csv')
+write_csv(df_2021, 'DC_2021.csv')
+write_csv(air_data, 'air_data_DC.csv')
+write_csv(new_forecast_data, 'forecast_2020.csv')
+new_forecast_data
+
+```

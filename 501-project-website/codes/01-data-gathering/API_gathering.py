@@ -17,5 +17,4 @@ response = requests.request("GET", url, headers=headers, params=querystring)
 data = response.text
 data_dict = json.loads(data)
 df = pd.DataFrame.from_dict(data_dict['data'])
-df.to_csv('./data/datafile', sep='\t')
-print(df)
+df.to_csv('501-project-website/data/datafile.csv', sep='\t')

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ANLY 501 Project</title>
+    <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <ul>
+          <!-- link back to homepage -->
+          <li><a href="../index.html">About me</a></li>
+          
+          <!-- tab without dropdown  -->
+          <li><a href="./introduction.html">Introduction</a></li>
+      
+          <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
+      
+          <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Data</a></li>
+      
+          <li><a href="./data-gathering.html">Data-gathering</a></li>
+      
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./data_cleaning.html">Data Cleaning</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./data_visualisation.html">Exploring Data</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./pages/introduction.html">Naïve Bayes</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./pages/introduction.html">Decision Trees</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./pages/introduction.html">SVM</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./pages/introduction.html">Clustering</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+      
+          <!-- tab without dropdown  -->
+          <li><a href="./pages/introduction.html">Conclusion</a></li>
+        </ul>
+          <p>
+            <h3 style="text-align: Center; margin-left: 35px; margin-right: 35px;"> Data cleaning</h3>
+          </p>
+          <p style="font-size:14px; margin-left: 35px; margin-right: 35px;">Data cleansing or data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records from a record set, table, or database and refers to identifying incomplete, incorrect, inaccurate or irrelevant parts of the data and then replacing, modifying, or deleting the dirty or coarse data.
+            After cleansing, a data set should be consistent with other similar data sets in the system. The inconsistencies detected or removed may have been originally caused by user entry errors, by corruption in transmission or storage, or by different data dictionary definitions of similar entities in different stores.</p>
+          <table class="center" style="width: 75%;">
+            <tbody >
+              <tr class="center">
+                <th class="center"> Clean Data Set</th>
+                <th class="center"> Description</th>
+              </tr>
+              <tr class="center">
+                <th class=" center"> 
+                  <img alt="Twitter_data_New" height="250px" src="../images/Twitter_new.png" width="450px">
+                  <center>
+                    <a href="/codes/01-data-gathering/Clean_Twitter_New_data.csv" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> CSV File Recent twitter data</a>
+                  </center>
+                  <center>
+                    <a href="/codes/01-data-gathering/Clean_Twitter_old_data.csv" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> CSV File Twitter data for five years</a>
+                  </center>
+                  <center>
+                    <a href="/images/Twitter_new.png" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> View image</a>
+                  </center>
+                </th>
+                <td class="center">
+                  <h3> <center><b>Python Twitter API cleaning</b></center></h3>
+            <br>
+              <center> I used the hashtag "climatechange" to pull data from Twitter for the last seven days as well as the previous five years. Eliminated unnecessary columns, punctuation, and emojis from the text. utilized Countvectorizer and wordcloud to analyze the most frequently used words. </center>
+               <br>
+               <center>The photo attached is a dataframe snippent containing all the recent tweets with hashtag climate change. </center>
+               <br>
+            <center><a href="/codes/01-data-gathering/New_tweets_cleaning.py">Python code for recent twitter data cleaning</a></center>
+            <center><a href="/codes/01-data-gathering/old_tweets_cleaning.py">Python code for older twitter data cleaning</a></center>
+          </td>
+              </tr>
+              <tr class="center">
+                <td class="center">
+                  
+                  <tr class="center">
+                    <th class=" center"> 
+                      <img alt="Clean data" height="250px" src="../images/DC_2020_clean.png" width="450px">
+                      <center>
+                        <a href="../images/DC_2020_clean.png" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> View</a>
+                      </center>
+                <center><a href="../codes/01-data-gathering/DC_2021.csv"> DC 2020 weather report </a></center>
+                <center><a href="../codes/01-data-gathering/DC_2020.csv"> DC 2021 weather report </a></center>
+                <center><a href="../codes/01-data-gathering/air_data_DC.csv"> DC 2020 air pollution report </a></center>
+                <center><a href="../codes/01-data-gathering/forecast_2020.csv"> DC 2020 weather report </a></center>
+
+                </td> 
+                <td class="center">
+                  <h3 class="center"> 
+                    <center>
+                      <b>Record cleaning using R</b></center></h3>
+                <center>Each obtained data set's records are cleaned using R. Unwanted columns are eliminated, duplicates are verified for, and necessary datasets are combined to create correlation between the data.</center>
+                <br>
+                <center><a href="../codes/01-data-gathering/data_cleaning_DC_forecast.html">R code </a></center>
+                </td>
+              </tr>
+              
+            </tbody>
+      
+          </table>
+</html>
