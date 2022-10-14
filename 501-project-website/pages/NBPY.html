@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <ul>
+        <!-- link back to homepage -->
+        <li><a href="../index.html">About me</a></li>
+        
+        <!-- tab without dropdown  -->
+        <li><a href="./introduction.html">Introduction</a></li>
+    
+        <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
+    
+        <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Data</a></li>
+    
+        <li><a href="./data-gathering.html">Data-gathering</a></li>
+    
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./data_cleaning.html">Data Cleaning</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./data_visualisation.html">Exploring Data</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+            
+            <div class="dropdown-content">
+                
+            <a href="./NBR.html">NB with R</a>
+            <a href="./NBPY.html">NB with python</a>
+            </div>
+        </li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">Decision Trees</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">SVM</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">Clustering</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">Conclusion</a></li>
+      </ul>
+      <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+        Naive Bayes in python</h2> 
+        <p style="display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-left: 100px; margin-right: 100px;"> In Python, the naive bayes is computed using a text dataset. The tweets are based on the hashtags "climatechange" and "savetheplanet." The goal of collecting this text data was to learn about people's perspectives on how important climate change is in today's world. To get a quick overview of the data, a wordcloud of both the hashtags has been made.</p>
+        <center>
+        <img alt="img" height="400px" src="../images/NBPY1.png" width="600px">
+    </center>
+    <center style="margin-top:35px;">
+        <img alt="img" height="400px" src="../images/NBPY2.png" width="600px">
+    </center>
+    <center style="margin-top:35px;">
+        Clean and combined data for both the hashtags can be seen below.
+    </center>
+    <center style="margin-top:35px;">
+        <img alt="img" height="400px" src="../images/clean_combinedtwitter.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/clean_combinedtwitter.png">View</a>
+    </center>
+    <center style="margin-top:35px;">
+        data distribution for each label before balancing the data.
+    </center>
+    <center style="margin-top:35px;">
+        <img alt="img" height="400px" src="../images/labelinfo.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/labelinfo.png">View</a>
+    </center>
+    <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+        Model builiding</h2> 
+    <center>
+        <a href="../codes/01-data-gathering/NB_py.html">Code for the model building</a>
+    </center>
+    <center>
+    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+        The dataset is divided into training and testing sets before the model is built. The split ratio in the training set is 0.75 and in the testing set it is 0.25. Three distinct naive bayes models are developed. The hypertuning of various parameters distinguishes the Naive Bayes models. Specifically, the alpha values.
+    </p>
+</center>
+<center>
+<h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+    Model 1</h3> 
+</center>
+    <center>
+        <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+            The first naive bayes model was developed. The hyperparameter in this model is alpha = 1. The accuracy of this model is 89%.
+        </p>
+        <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">The snapshot of model 1</p>
+    </center>
+
+<center>
+    <img alt="img" height="400px" src="../images/model1py.png" width="600px">
+</center>
+<center>
+    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+        Model 2</h3> 
+    </center>
+<center>
+    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+        The first naive bayes model was developed. The hyperparameter in this model is alpha = 0. The accuracy of this model is same as model 1 in this case, that is 89%.
+    </p>
+    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">The snapshot of model 2</p>
+</center>
+
+<center>
+<img alt="img" height="400px" src="../images/model2py.png" width="600px">
+</center>
+
+<center>
+    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+        Model 3</h3> 
+    </center>
+<center>
+    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+        The first naive bayes model was developed. The hyperparameter in this model is alpha = 5. The accuracy of this model 92%.
+    </p>
+    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">The snapshot of model 3</p>
+</center>
+
+<center>
+<img alt="img" height="400px" src="../images/model3.1py.png" width="600px">
+</center>
+<center>
+    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+        Conclusion</h3> 
+    </center>
+<center>
+    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+        The goal was to find people's opinion on today's climate change using recent twitter data. The Naive Bayes model classified tweets generated by Twitter into different hashtag classes. The models' accuracy is 89% and 92%, respectively. The precision is quite high.
+    </p>
+</center>
+</body>
+</html>

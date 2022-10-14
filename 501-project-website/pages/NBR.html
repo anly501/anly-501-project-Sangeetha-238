@@ -1,0 +1,175 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <ul>
+        <!-- link back to homepage -->
+        <li><a href="../index.html">About me</a></li>
+        
+        <!-- tab without dropdown  -->
+        <li><a href="./introduction.html">Introduction</a></li>
+    
+        <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
+    
+        <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Data</a></li>
+    
+        <li><a href="./data-gathering.html">Data-gathering</a></li>
+    
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./data_cleaning.html">Data Cleaning</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./data_visualisation.html">Exploring Data</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+            
+            <div class="dropdown-content">
+                
+            <a href="./NBR.html">NB with R</a>
+            <a href="./NBPY.html">NB with python</a>
+            </div>
+        </li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">Decision Trees</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">SVM</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">Clustering</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+    
+        <!-- tab without dropdown  -->
+        <li><a href="./pages/introduction.html">Conclusion</a></li>
+      </ul>
+      <p>
+        <h3 style="text-align: Center; margin-left: 35px; margin-right: 35px;"> Naive Bayes</h3>
+      </p>
+      <h3 style="text-align: left; color:black; margin-left: 85px; margin-right: 35px;"> What is Naive Bayes?</h3>
+      <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
+        With the premise of predictor independence, it is a classification strategy based on the Bayes Theorem. In plain English, a Naive Bayes classifier makes the assumption that the existence of one feature in a class is unrelated to the presence of any other feature. It is simple to construct a Naive Bayes model, and it is very helpful for very big data sets. Naive Bayes is well renowned for being more effective than even the most complex classification techniques.
+    </p>
+        <h4 style="margin-left: 100px; margin-right: 100px;">
+            Types of Naive Bayes Classifier:</h4>   
+    
+        <h4 style="margin-left: 100px; margin-right: 100px;">
+            Multinomial Naive Bayes:</h4>    
+    <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
+        This is mostly used for document classification issues, such as determining whether a document falls under the sports, politics, technology, etc. category. The frequency of the terms included in the document is one of the features/predictors that the classifier uses.
+    </p>
+        <h4 style="margin-left: 100px; margin-right: 100px;">
+            Bernoulli Naive Bayes:</h4> 
+
+    <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
+        Similar to the multinomial naive bayes, but using boolean variables as predictors. The only options for the factors we use to predict the class variable are yes or no, as in whether a word is in the text or not.
+    </p>
+    <h4 style="margin-left: 100px; margin-right: 100px;">
+        Gaussian Naive Bayes:</h4>   
+    <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
+        When the predictors take up a continuous value and are not discrete, we assume that these values are sampled from a gaussian distribution.
+    </p>
+    <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+        Naive Bayes in R</h2> 
+    <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
+        The Naive bayes is applied on two data sets, to predict the temperature and to determine the air quality. The data sets are imported from the csv files. The data sets are cleaned and the missing values are replaced with the mean of the column. The data is split into training and testing data. The model is built using the training data and the model is tested using the testing data. The accuracy of the model is calculated and the confusion matrix is plotted. The model is built using the multinomial naive bayes and the bernoulli naive bayes. The accuracy of the model is calculated and the confusion matrix is plotted.
+    </p> 
+    <center>The snapshot of the dataset and the link to the csv file is attached below.</center>
+    <center style="margin-top: 35px;"><img alt="img" height="400px" src="../images/dataR1.png" width="600px"></center> 
+
+    <center>
+        <a href="../images/dataR1.png"> View </a>
+    </center> 
+
+    <center>
+        <a href="../data/GlobalLandTemperaturesByMajorCity.csv"> Download CSV </a>
+    </center> 
+    <center style="margin-top: 35px;"><img alt="img" height="400px" src="../images/dataR2.png" width="600px"></center>
+    <center>
+        <a href="../images/dataR2.png"> View </a>
+    </center> 
+
+    <center>
+        <a href="../data/ny-air.csv"> Download CSV </a>
+    </center>
+    <center style="margin-top: 35px;">
+        The code for the Naive bayes model build and data cleaning for air quality data can be found here. <a href="../codes/01-data-gathering/R2_NB.html"> Click here </a>
+    </center>
+    <center style="margin-left: 100px; margin-right: 100px;">
+        The naive bayes model is applied to find out the conditional probability of air quality, people affected by the pollution and their age group. Below is the snapshot of the model.
+        Before builiding the model the data was split into train and test data and the test data is yeilding accuracy of 84%. The model is trained to predict the air quality and the age group and the number of people affected by the pollution. 
+    </center>
+    <center>
+        <img alt="img" height="400px" src="../images/NB2VS.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/NB2VS.png"> View </a>
+    </center>
+    <center >
+        The graph above shows all the variables and categories the model is applied to with their frequencies.
+    <center>
+        <img alt="img" height="400px" src="../images/modelsnapshot_R.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/modelsnapshot_R.png"> View </a>
+    </center>
+    <center>
+        <img alt="img" height="400px" src="../images/accuray1R.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/accuray1R.png"> View Accuracy</a>
+    </center>
+    <center >
+        Confusion matrix for the model is plotted below.
+    </center>
+    <center>
+        <img alt="img" height="400px" src="../images/NB2.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/NB2.png"> View </a>
+    </center>
+    <center style="margin-top: 35px;">
+        The code for the Naive bayes model build and data cleaning for temperature can be found here. <a href="../codes/01-data-gathering/NB_R.html"> Click here </a>
+    </center>
+    <center style="margin-left: 100px; margin-right: 100px;">
+        The naive bayes model is applied to find out the conditional probability  Below is the snapshot of the model.
+        Before builiding the model the data was split into train and test data and the test data is yeilding accuracy of 95%. The model is trained to predict the temperature variation in different countries. 
+    </center>
+    <center>
+        <img alt="img" height="400px" src="../images/NB1VS.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/NB1VS.png"> View </a>
+    </center>
+    <center >
+        The graph above shows the variation of temperature in different countries.
+    <center>
+    <center>
+        <img alt="img" height="400px" src="../images/model2R.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/model2R.png"> View </a>
+    </center>
+    <center >
+        Confusion matrix for the model is plotted below.
+    </center>
+    <center>
+        <img alt="img" height="400px" src="../images/NB1.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/NB1.png"> View </a>
+    </center>
+    <center>
+        <h3><b>Conclusion</b></h3>
+        <p>
+            The intention was to train the model to predict the temperature, and air quality and it's effects. The accurancy of models yeilded 84% and 95% respectively. The model can be improved by using more data and by using more complex models.
+        </p>
+    </center>
+</body>
+</html>

@@ -15,6 +15,8 @@ tweet_data = tweet_data[['text']]
 def remove_punct(text):
     text  = "".join([char for char in text if char not in string.punctuation])
     text = re.sub('[0-9]+', '', text) #removes numbers from text
+    #remove rt from text
+    text = re.sub(r'rt', '', text)
     return text
 
 
@@ -25,6 +27,7 @@ def tokenization(text):
     return text
 
 tweet_data['Tweet_tokenized'] = tweet_data['clean_text'].apply(lambda x: tokenization(x.lower()))
+
 
 nltk.download('stopwords')
 stopwords = nltk.corpus.stopwords.words('english')
