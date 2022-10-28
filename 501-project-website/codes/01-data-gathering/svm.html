@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.247">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <!-- point to css stylesheet -->
+
+
+<title>svm</title>
+
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="svm_files/libs/clipboard/clipboard.min.js"></script>
+<script src="svm_files/libs/quarto-html/quarto.js"></script>
+<script src="svm_files/libs/quarto-html/popper.min.js"></script>
+<script src="svm_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="svm_files/libs/quarto-html/anchor.min.js"></script>
+<link href="svm_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="svm_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="svm_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="svm_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="svm_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="fullcontent">
+  <ul>
+    <!-- link back to homepage -->
+    <li><a href="../../index.html">About me</a></li>
+    
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/introduction.html">Introduction</a></li>
+
+    <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
+
+    <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Data</a></li>
+
+    <li><a href="../../pages/data-gathering.html">Data-gathering</a></li>
+
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/data_cleaning.html">Data Cleaning</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/data_visualisation.html">Exploring Data</a></li>
+
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+      
+      <div class="dropdown-content">
+          
+      <a href="../../pages/NBR.html">NB with R</a>
+      <a href="../../pages/NBPY.html">NB with python</a>
+      </div>
+  </li>
+
+
+    <!-- tab without dropdown  -->
+    <li><a href="../01-data-gathering/decision_tree.html">Decision Trees</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="../01-data-gathering/svm.html">SVM</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/introduction.html">Clustering</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="./pages/introduction.html">Conclusion</a></li>
+
+    
+    <!-- tab with dropdown -->
+    <!-- <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">local reference</a>
+        
+        <div class="dropdown-content">
+            
+        <a href="./pages/html-cheatsheet/cheatsheet.html">html</a>
+        <a href="./pages/markdown-cheatsheet/markdown-cheatsheet.html">markdown</a>
+        </div>
+    </li> -->
+    
+    <!-- tab with dropdown -->
+    
+    <!-- <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">external links</a>
+        
+        <div class="dropdown-content">
+        open in new tab use:   <a href="https://www.google.com/" target="_blank">google</a>
+        open in same tab use:  <a href="https://www.google.com/">google</a>
+        <a href="https://www.google.com/" target="_blank">google</a>
+        <a href="    https://www.wikipedia.org/" target="_blank">wikipedia</a>
+    
+        </div>
+    </li> -->
+    
+    
+    </ul>
+
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="support-vector-machines-svms" class="level2">
+<h2 class="anchored" data-anchor-id="support-vector-machines-svms">Support Vector Machines (SVMs)</h2>
+<p>A support vector machine, also known as an SVM, is a type of supervised machine learning model that uses classification techniques to solve problems involving two groups of categorization. When an SVM model is given sets of labeled training data for each category, it can classify newly encountered text.</p>
+<p>They have two primary advantages over more recent algorithms such as neural networks: increased speed and improved performance with a limited number of data points (in the thousands). As a result, the approach is well suited to solving problems involving text classification, which frequently require access to datasets containing only a few thousand annotated examples at most.</p>
+<section id="about-data" class="level3">
+<h3 class="anchored" data-anchor-id="about-data">About data</h3>
+<p>The SVM is applied to classify the air quality, people affected by the pollution and their age group in New york city. The model is trained to predict the air quality and the age group and the number of people affected by the pollution.</p>
+<section id="importing-required-librarires" class="level4">
+<h4 class="anchored" data-anchor-id="importing-required-librarires">Importing required librarires:</h4>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer, TfidfVectorizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-the-data-and-removing-unwanted-columns" class="level4">
+<h4 class="anchored" data-anchor-id="reading-the-data-and-removing-unwanted-columns">Reading the data and removing unwanted columns:</h4>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'../../data/ny-air.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.dropna(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">'indicator_data_id'</span>,<span class="st">'indicator_id'</span>,<span class="st">'geo_type_name'</span>,<span class="st">'geo_type_name'</span>,<span class="st">'data_valuemessage'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>name</th>
+      <th>measure</th>
+      <th>geo_entity_id</th>
+      <th>geo_entity_name</th>
+      <th>year_description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Air Toxics Concentrations- Average Benzene Con...</td>
+      <td>Average Concentration</td>
+      <td>1</td>
+      <td>Bronx</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Air Toxics Concentrations- Average Benzene Con...</td>
+      <td>Average Concentration</td>
+      <td>2</td>
+      <td>Brooklyn</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Air Toxics Concentrations- Average Benzene Con...</td>
+      <td>Average Concentration</td>
+      <td>3</td>
+      <td>Manhattan</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Air Toxics Concentrations- Average Benzene Con...</td>
+      <td>Average Concentration</td>
+      <td>4</td>
+      <td>Queens</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Air Toxics Concentrations- Average Benzene Con...</td>
+      <td>Average Concentration</td>
+      <td>5</td>
+      <td>Staten Island</td>
+      <td>2005</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataframe into X and y and then split X and y into train and test sets.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">"name"</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#y is the activity column</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">"name"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>measure</th>
+      <th>geo_entity_id</th>
+      <th>geo_entity_name</th>
+      <th>year_description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Average Concentration</td>
+      <td>1</td>
+      <td>Bronx</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Average Concentration</td>
+      <td>2</td>
+      <td>Brooklyn</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Average Concentration</td>
+      <td>3</td>
+      <td>Manhattan</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Average Concentration</td>
+      <td>4</td>
+      <td>Queens</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Average Concentration</td>
+      <td>5</td>
+      <td>Staten Island</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2764</th>
+      <td>Per 100 km2</td>
+      <td>410</td>
+      <td>Rockaways</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>2765</th>
+      <td>Per 100 km2</td>
+      <td>501</td>
+      <td>Port Richmond</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>2766</th>
+      <td>Per 100 km2</td>
+      <td>502</td>
+      <td>Stapleton - St. George</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>2767</th>
+      <td>Per 100 km2</td>
+      <td>503</td>
+      <td>Willowbrook</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>2768</th>
+      <td>Per 100 km2</td>
+      <td>504</td>
+      <td>South Beach - Tottenville</td>
+      <td>2005</td>
+    </tr>
+  </tbody>
+</table>
+<p>2736 rows × 4 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="split-the-dataset-into-training-and-testing-sets" class="level4">
+<h4 class="anchored" data-anchor-id="split-the-dataset-into-training-and-testing-sets">Split the dataset into training and testing sets</h4>
+<p>Before splitting the data into training and testing, it is scaled and labeled, with label encoding referring to converting the labels into a numeric form that is machine-readable.</p>
+<p>By splitting our dataset into training and testing data, we can reserve some data to verify our model’s effectiveness. We do this split before we build our model in order to test the effectiveness against data that our model hasn’t yet seen.</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#transform the string values into numbers</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'measure'</span>] <span class="op">=</span> le.fit_transform(X[<span class="st">'measure'</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'geo_entity_name'</span>] <span class="op">=</span> le.fit_transform(X[<span class="st">'geo_entity_name'</span>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'year_description'</span>] <span class="op">=</span> le.fit_transform(X[<span class="st">'year_description'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>O3-Attributable Asthma ED Visits                                                317
+O3-Attributable Asthma Hospitalizations                                         313
+PM2.5-Attributable Asthma ED Visits                                             300
+PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)       161
+O3-Attributable Cardiac and Respiratory Deaths                                  158
+PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)    155
+PM2.5-Attributable Deaths                                                       145
+Traffic Density- Annual Vehicle Miles Traveled (VMT)                             78
+Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks                  77
+Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars                    72
+Neighborhood Air Quality Concentrations- Nitric Oxide (NO)                       43
+Air Toxics Concentrations- Average Benzene Concentrations                        42
+Air Toxics Concentrations- Average Formaldehyde Concentrations                   39
+Boiler Emissions- Total NOx Emissions                                            38
+Neighborhood Air Quality Concentrations- Elemental Carbon (EC)                   38
+Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)                    37
+Boiler Emissions- Total PM2.5 Emissions                                          37
+Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)                  36
+Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)         36
+Boiler Emissions- Total SO2 Emissions                                            35
+Neighborhood Air Quality Concentrations- Ozone (O3)                              31
+Name: name, dtype: int64</code></pre>
+</div>
+</div>
+<p>## SVM with Linear kernels</p>
+<p>A Linear Kernel is used when data is Linearly separable, which means it can be partitioned along a straight line. It is one of the most commonly used kernels. Its primary application occurs when a given data set contains a large number of features.</p>
+<p>To be more specific, the svc() function can be used to fit a support vector classifier if the kernel argument is set to “linear.” This function uses a slightly modified version of the standard formulation to implement the support vector classifier. We can calculate the amount of money lost due to a margin violation using a cost argument. When the cost argument is weak, the margins are broad, and a large number of support vectors are either on the margin or violate it. When the cost argument is significant, the margins are low, and there are only a few support vectors that are either on the margin or violate the margin.</p>
+<p>Using the svc() method, we can tailor the support vector classifier to the value supplied for the cost parameter, denoted by the letter ‘C.’ For this model, the cost margin is set to 0.5, and when performing supervised machine learning (classification) on categorical data, we frequently use a confusion matrix to calculate the number of correct and incorrect predictions for different classes.</p>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be linear and C between 0.35-0.75. </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, confusion_matrix</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'linear'</span>, C<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the confusion matrix and classification report for the train and test data. </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame. </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.250000</td>
+      <td>0.333333</td>
+      <td>0.285714</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.428571</td>
+      <td>0.333333</td>
+      <td>0.375000</td>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.217391</td>
+      <td>0.500000</td>
+      <td>0.303030</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.272727</td>
+      <td>0.272727</td>
+      <td>0.272727</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>13.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.089286</td>
+      <td>1.000000</td>
+      <td>0.163934</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>17.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.226721</td>
+      <td>0.835821</td>
+      <td>0.356688</td>
+      <td>67.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.139535</td>
+      <td>0.084507</td>
+      <td>0.105263</td>
+      <td>71.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>34.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>84.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>47.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.255319</td>
+      <td>0.666667</td>
+      <td>0.369231</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>24.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.071429</td>
+      <td>0.052632</td>
+      <td>0.060606</td>
+      <td>19.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.337591</td>
+      <td>0.337591</td>
+      <td>0.337591</td>
+      <td>0.337591</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.235761</td>
+      <td>0.337096</td>
+      <td>0.252009</td>
+      <td>548.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.244576</td>
+      <td>0.337591</td>
+      <td>0.261147</td>
+      <td>548.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.537037</td>
+      <td>0.690476</td>
+      <td>0.604167</td>
+      <td>42.00000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.518519</td>
+      <td>0.358974</td>
+      <td>0.424242</td>
+      <td>39.00000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.369863</td>
+      <td>0.710526</td>
+      <td>0.486486</td>
+      <td>38.00000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.351351</td>
+      <td>0.351351</td>
+      <td>0.351351</td>
+      <td>37.00000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>35.00000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.00000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.00000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.233696</td>
+      <td>1.000000</td>
+      <td>0.378855</td>
+      <td>43.00000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.00000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.00000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>37.00000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.254652</td>
+      <td>0.820189</td>
+      <td>0.388640</td>
+      <td>317.00000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.275556</td>
+      <td>0.198083</td>
+      <td>0.230483</td>
+      <td>313.00000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>158.00000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>300.00000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>155.00000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>145.00000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>161.00000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.354651</td>
+      <td>0.782051</td>
+      <td>0.488000</td>
+      <td>78.00000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>72.00000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.400000</td>
+      <td>0.285714</td>
+      <td>0.333333</td>
+      <td>77.00000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.398080</td>
+      <td>0.398080</td>
+      <td>0.398080</td>
+      <td>0.39808</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.299777</td>
+      <td>0.390351</td>
+      <td>0.318360</td>
+      <td>2188.00000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.294935</td>
+      <td>0.398080</td>
+      <td>0.314794</td>
+      <td>2188.00000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>disp.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff598bedb10&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>With linear kernel, the model is yeilding 33% accuracy for train data and 39% for test data.</p>
+<p>## SVM with Polynomial kernels</p>
+<p>Polynomial Kernel represents the degree of similarity between vectors in the training set of data in a feature space over polynomials of the variables used in the kernel. The polynomial kernel is a machine learning kernel function that is commonly used with support vector machines (SVMs) and other kernelized models to represent the similarity of vectors (training samples) in a feature space over polynomials of the original variables and facilitate non-linear model learning.</p>
+<p>To be more specific, a support vector classifier can be fitted using the input kernel = “poly” and the svc() function. We can get an idea of the financial damage caused by a margin violation by presenting the cost of it. We can adjust the support vector classifier to the value of the cost argument by calling the svc() function (denoted by the letter C). We frequently use a confusion matrix to determine the count of accurate and inaccurate predictions for distinct classes when performing supervised machine learning (classification) on categorical data; in this model, we set the cost margin to 0.5.</p>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be polynomial, C between 0.35-0.75, and degree = 2. </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, C<span class="op">=</span><span class="fl">0.5</span>, degree<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix and classification report for the train and test data. </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame.</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>13.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>17.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.113333</td>
+      <td>0.253731</td>
+      <td>0.156682</td>
+      <td>67.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.123116</td>
+      <td>0.690141</td>
+      <td>0.208955</td>
+      <td>71.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>34.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>84.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>47.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>24.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>19.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.120438</td>
+      <td>0.120438</td>
+      <td>0.120438</td>
+      <td>0.120438</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.011259</td>
+      <td>0.044946</td>
+      <td>0.017411</td>
+      <td>548.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.029808</td>
+      <td>0.120438</td>
+      <td>0.046229</td>
+      <td>548.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="66">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>42.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>39.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>35.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>43.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.143288</td>
+      <td>0.299685</td>
+      <td>0.193878</td>
+      <td>317.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.146230</td>
+      <td>0.712460</td>
+      <td>0.242655</td>
+      <td>313.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>158.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>300.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>155.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>145.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>161.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>78.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>72.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>77.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.145338</td>
+      <td>0.145338</td>
+      <td>0.145338</td>
+      <td>0.145338</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.013787</td>
+      <td>0.048197</td>
+      <td>0.020787</td>
+      <td>2188.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.041678</td>
+      <td>0.145338</td>
+      <td>0.062802</td>
+      <td>2188.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>dist.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="67">
+<pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff598bee9e0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>With Polynomial kernel, the model is yeilding 12% accuracy for train data and 14% for test data.</p>
+<p>## SVM with RBF kernels</p>
+<p>RBF kernels are the broadest type of kernelization. They are also one of the most commonly used kernels due to their resemblance to the Gaussian distribution, which is one of the most common. It is a kernel that can be used for a variety of applications and is used when there is no prior knowledge about the data. It is used specifically when there is no prior knowledge of the data. To be more specific, a support vector classifier can be fitted using the input kernel = “rbf” and the svc() function. We can get an idea of the financial damage caused by a margin violation by presenting the cost of it. We can adjust the support vector classifier to the value of the cost argument by calling the svc() function (denoted by the letter C). We frequently use a confusion matrix to determine the count of accurate and inaccurate predictions for distinct classes when performing supervised machine learning (classification) on categorical data; in this model, we set the cost margin to 0.5.</p>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be linear and C between 0.35-0.75.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'rbf'</span>, C<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix and classification report for the train and test data. </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>13.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>17.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.113065</td>
+      <td>0.671642</td>
+      <td>0.193548</td>
+      <td>67.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.093333</td>
+      <td>0.197183</td>
+      <td>0.126697</td>
+      <td>71.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>34.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>84.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>47.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>24.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>19.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.107664</td>
+      <td>0.107664</td>
+      <td>0.107664</td>
+      <td>0.107664</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.009829</td>
+      <td>0.041373</td>
+      <td>0.015250</td>
+      <td>548.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.025916</td>
+      <td>0.107664</td>
+      <td>0.040079</td>
+      <td>548.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>42.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>39.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>35.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>43.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.146875</td>
+      <td>0.741325</td>
+      <td>0.245175</td>
+      <td>317.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.153061</td>
+      <td>0.287540</td>
+      <td>0.199778</td>
+      <td>313.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>158.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>300.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>155.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>145.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>161.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>78.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>72.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>77.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.148537</td>
+      <td>0.148537</td>
+      <td>0.148537</td>
+      <td>0.148537</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.014283</td>
+      <td>0.048994</td>
+      <td>0.021188</td>
+      <td>2188.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.043175</td>
+      <td>0.148537</td>
+      <td>0.064100</td>
+      <td>2188.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>dist.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+<pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff59b002f50&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>With RBF kernel, the model is yeilding 10% accuracy for train data and 14% for test data.</p>
+</section>
+</section>
+</section>
+<section id="svm-with-sigmoid-kernels" class="level2">
+<h2 class="anchored" data-anchor-id="svm-with-sigmoid-kernels">SVM with Sigmoid kernels</h2>
+<p>The Sigmoid function serves as an activation function, which is used to add non-linearity to a machine learning model. Essentially, the function determines which values to pass as output and which to reject.</p>
+<div class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be linear and C between 0.35-0.75. </span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'sigmoid'</span>, C<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix and classification report for the train and test data. </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame.</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for test</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="77">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>13.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>17.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.061728</td>
+      <td>0.074627</td>
+      <td>0.067568</td>
+      <td>67.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.117647</td>
+      <td>0.422535</td>
+      <td>0.184049</td>
+      <td>71.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>34.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.147059</td>
+      <td>0.059524</td>
+      <td>0.084746</td>
+      <td>84.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>47.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.073034</td>
+      <td>0.419355</td>
+      <td>0.124402</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>24.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>19.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.096715</td>
+      <td>0.096715</td>
+      <td>0.096715</td>
+      <td>0.096715</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.019022</td>
+      <td>0.046478</td>
+      <td>0.021941</td>
+      <td>548.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.049463</td>
+      <td>0.096715</td>
+      <td>0.052134</td>
+      <td>548.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air Toxics Concentrations- Average Benzene Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>42.000000</td>
+    </tr>
+    <tr>
+      <th>Air Toxics Concentrations- Average Formaldehyde Concentrations</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>39.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total NOx Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total PM2.5 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>Boiler Emissions- Total SO2 Emissions</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>35.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Elemental Carbon (EC)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>38.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Fine Particulate Matter (PM2.5)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitric Oxide (NO)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>43.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Nitrogen Dioxide (NO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations- Ozone (O3)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>31.000000</td>
+    </tr>
+    <tr>
+      <th>Neighborhood Air Quality Concentrations: Sulfur Dioxide (SO2)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma ED Visits</th>
+      <td>0.152482</td>
+      <td>0.135647</td>
+      <td>0.143573</td>
+      <td>317.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Asthma Hospitalizations</th>
+      <td>0.146146</td>
+      <td>0.466454</td>
+      <td>0.222561</td>
+      <td>313.000000</td>
+    </tr>
+    <tr>
+      <th>O3-Attributable Cardiac and Respiratory Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>158.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Asthma ED Visits</th>
+      <td>0.148438</td>
+      <td>0.063333</td>
+      <td>0.088785</td>
+      <td>300.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>155.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Deaths</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>145.000000</td>
+    </tr>
+    <tr>
+      <th>PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)</th>
+      <td>0.070603</td>
+      <td>0.341615</td>
+      <td>0.117021</td>
+      <td>161.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT)</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>78.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Cars</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>72.000000</td>
+    </tr>
+    <tr>
+      <th>Traffic Density- Annual Vehicle Miles Traveled (VMT) for Trucks</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>77.000000</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.120201</td>
+      <td>0.120201</td>
+      <td>0.120201</td>
+      <td>0.120201</td>
+    </tr>
+    <tr>
+      <th>macro avg</th>
+      <td>0.024651</td>
+      <td>0.047955</td>
+      <td>0.027235</td>
+      <td>2188.000000</td>
+    </tr>
+    <tr>
+      <th>weighted avg</th>
+      <td>0.068546</td>
+      <td>0.120201</td>
+      <td>0.073423</td>
+      <td>2188.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>dist.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff5bfd53f40&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>With Sigmoid, the model is yeilding 9% accuracy for train data and 12% for test data.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Various kernels produced varying degrees of accuracy. Finally, the linear kernel is best suited for the data with the highest accuracy.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.247">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<head>
+  <title>501 project</title>
+
+  <!-- point to css stylesheet -->
+  <link rel="stylesheet" href="../../styles.css">
+
+</head>
+
+
+<title>decision_tree</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="decision_tree_files/libs/clipboard/clipboard.min.js"></script>
+<script src="decision_tree_files/libs/quarto-html/quarto.js"></script>
+<script src="decision_tree_files/libs/quarto-html/popper.min.js"></script>
+<script src="decision_tree_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="decision_tree_files/libs/quarto-html/anchor.min.js"></script>
+<link href="decision_tree_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="decision_tree_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="decision_tree_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="decision_tree_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="decision_tree_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+  <ul>
+    <!-- link back to homepage -->
+    <li><a href="../../index.html">About me</a></li>
+    
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/introduction.html">Introduction</a></li>
+
+    <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
+
+    <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Data</a></li>
+
+    <li><a href="../../pages/data-gathering.html">Data-gathering</a></li>
+
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/data_cleaning.html">Data Cleaning</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/data_visualisation.html">Exploring Data</a></li>
+
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+      
+      <div class="dropdown-content">
+          
+      <a href="../../pages/NBR.html">NB with R</a>
+      <a href="../../pages/NBPY.html">NB with python</a>
+      </div>
+  </li>
+
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../codes/01-data-gathering/decision_tree.html">Decision Trees</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../codes/01-data-gathering/svm.html">SVM</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="../../pages/introduction.html">Clustering</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+
+    <!-- tab without dropdown  -->
+    <li><a href="./pages/introduction.html">Conclusion</a></li>
+
+    
+    <!-- tab with dropdown -->
+    <!-- <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">local reference</a>
+        
+        <div class="dropdown-content">
+            
+        <a href="./pages/html-cheatsheet/cheatsheet.html">html</a>
+        <a href="./pages/markdown-cheatsheet/markdown-cheatsheet.html">markdown</a>
+        </div>
+    </li> -->
+    
+    <!-- tab with dropdown -->
+    
+    <!-- <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">external links</a>
+        
+        <div class="dropdown-content">
+        open in new tab use:   <a href="https://www.google.com/" target="_blank">google</a>
+        open in same tab use:  <a href="https://www.google.com/">google</a>
+        <a href="https://www.google.com/" target="_blank">google</a>
+        <a href="    https://www.wikipedia.org/" target="_blank">wikipedia</a>
+    
+        </div>
+    </li> -->
+    
+    
+    </ul>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="decision-tree" class="level2">
+<h2 class="anchored" data-anchor-id="decision-tree">DECISION TREE</h2>
+<p>A decision tree represents the potential consequences of a number of connected decisions. They can be used to lay out an algorithm that calculates the optimal option. A decision tree is formally a graphical representation of every potential course of action. They have excellent versatility and are simpler to understand and visualize. Tree-based algorithms can be used for classification and regression issues, however they are typically employed for classification problems.</p>
+<section id="decision-tree-classifier-for-twitter-data" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree-classifier-for-twitter-data">Decision tree classifier for twitter data</h3>
+<p>Using the hashtags “climatechange” and “savetheplanet,” Twitter data is gathered to determine people’s opinions on how climate change is affecting the planet. The objective is to use decision trees to train the model to categorize tweets according to these hashtags.</p>
+<p>Import required libraries</p>
+<div class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer, TfidfVectorizer</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, accuracy_score</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> resample</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud, STOPWORDS</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> recall_score</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After collecting the data, pre-processing was carried-out for enhancing the quality of collected data. Lemmatization, the removal of stop words, lowercase conversion, and the stemming process were carried out to complete the twitter pre-processing.</p>
+<p>Lemmatization: It transforms the words of a sentence into dictionary form.</p>
+<p>Reading the clean and combined data:</p>
+<div class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/combined_data.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'final_tweets'</span>] <span class="op">=</span> df[<span class="st">'final_tweets'</span>].<span class="bu">str</span>.replace(<span class="st">'rt'</span>, <span class="st">''</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="104">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>label</th>
+      <th>final_tweets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>savetheplanet</td>
+      <td>scallynancy think bringing recordbreaking supp...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>savetheplanet</td>
+      <td>luluonti agroecology agroecologia organicfarm...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>savetheplanet</td>
+      <td>aliceyadavis digital livestock weaken defores...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>savetheplanet</td>
+      <td>elagoradiario el cambioclimático e una realid...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>savetheplanet</td>
+      <td>agroecology agroecologia organicfarming organi...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The number of values in each class is counted, and the graph is plotted based on the number of tweets in each class. The model was downsized, the labels were normalized, and it was fit into decision trees.</p>
+<div class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#checking for number of vlues in each class</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> df[<span class="st">'label'</span>].value_counts().plot(kind<span class="op">=</span><span class="st">'bar'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                    figsize<span class="op">=</span>(<span class="dv">14</span>,<span class="dv">8</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                    title<span class="op">=</span><span class="st">"Number for labels"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Labels"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="105">
+<pre><code>Text(0, 0.5, 'Frequency')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate majority and minority classes</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_majority <span class="op">=</span> df[df.label<span class="op">==</span><span class="st">'savetheplanet'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_minority <span class="op">=</span> df[df.label<span class="op">==</span><span class="st">'climatechange'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_majority_downsampled <span class="op">=</span> resample(df_majority, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                 replace<span class="op">=</span><span class="va">False</span>,    <span class="co"># sample without replacement</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                 n_samples<span class="op">=</span><span class="bu">len</span>(df_minority),     <span class="co"># to match minority class</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                 random_state<span class="op">=</span><span class="dv">123</span>) <span class="co"># reproducible results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine minority class with downsampled majority class</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_downsampled <span class="op">=</span> pd.concat([df_majority_downsampled, df_minority])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display new class counts</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_downsampled.label.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="109">
+<pre><code>savetheplanet    250
+climatechange    250
+Name: label, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>df_downsampled[<span class="st">'final_tweets'</span>].values</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>df_downsampled[<span class="st">'label'</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>labelencoder <span class="op">=</span> LabelEncoder()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> labelencoder.fit_transform(y)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="111">
+<pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</code></pre>
+</div>
+</div>
+</section>
+<section id="splitting-data-into-training-and-testing-data-in-sklearn" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-data-into-training-and-testing-data-in-sklearn">Splitting Data into Training and Testing Data in Sklearn:</h3>
+<p>By splitting our dataset into training and testing data, we can reserve some data to verify our model’s effectiveness. We do this split before we build our model in order to test the effectiveness against data that our model hasn’t yet seen.</p>
+<div class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> CountVectorizer()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>X_train1 <span class="op">=</span> vectorizer.fit_transform(X_train.astype(<span class="st">'U'</span>)) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>X_test1 <span class="op">=</span> vectorizer.transform(X_test.astype(<span class="st">'U'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#AS A CONSISTENCY CHECK, TO PRINT THE TYPE AND SHAPE OF x_train, x_test, y_train, y_test</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(X_train))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(y_train))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.shape)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(X_test))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test.shape)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(y_test))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_test.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'numpy.ndarray'&gt;
+(375,)
+&lt;class 'numpy.ndarray'&gt;
+(375,)
+&lt;class 'numpy.ndarray'&gt;
+(125,)
+&lt;class 'numpy.ndarray'&gt;
+(125,)</code></pre>
+</div>
+</div>
+</section>
+<section id="decision-tree-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree-classifier">Decision tree classifier</h3>
+<p>Decision tree classifiers are used in a wide range of applications. The ability to extract descriptive decisionmaking knowledge from provided data is their most important feature. Training sets can be used to generate decision trees. The performance of a decision tree classifier is determined by how well the tree is built from training data. A decision tree typically begins with a root node and then divides the source set into subsets based on a feature value to generate subtrees. This process is repeated recursively on each derived subset until leaf nodes are created.</p>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TO TRAIN A SKLEARN DECISION TREE MODEL ON x_train,y_train</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> tree</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> tree.DecisionTreeClassifier(max_depth <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train1, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<style>#sk-container-id-5 {color: black;background-color: white;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier(max_depth=5)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" checked=""><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeClassifier</label><div class="sk-toggleable__content"><pre>DecisionTreeClassifier(max_depth=5)</pre></div></div></div></div></div>
+</div>
+</div>
+<div class="cell" data-execution_count="116">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#USE THE MODEL TO MAKE PREDICTIONS FOR THE TRAINING AND </span><span class="al">TEST</span><span class="co"> SET </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train1)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Evaluating the model using confusion matrix.</p>
+<div class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confusion_plot(y_data,y_pred):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    cm <span class="op">=</span> confusion_matrix(y_data, y_pred)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'ACCURACY: </span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(accuracy_score(y_data, y_pred)))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'NEGATIVE RECALL (Y=0): </span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(recall_score(y_data, y_pred, pos_label<span class="op">=</span><span class="dv">0</span>)))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'NEGATIVE PRECISION (Y=0): </span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(precision_score(y_data, y_pred, pos_label<span class="op">=</span><span class="dv">0</span>)))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'POSITIVE RECALL (Y=1): </span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(recall_score(y_data, y_pred, pos_label<span class="op">=</span><span class="dv">1</span>)))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'POSITIVE PRECISION (Y=1): </span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(precision_score(y_data, y_pred, pos_label<span class="op">=</span><span class="dv">1</span>)))</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(cm)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">"d"</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Confusion matrix'</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Actual label'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Predicted label'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the training model, the model achieves 91% accuracy with 85% negative precision and 100% positive precision. And the predicted test data is 95% accurate, with 91% negative precision and 100% positive precision.</p>
+<div class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN THE FOLLOWING CODE TO </span><span class="al">TEST</span><span class="co"> YOUR FUNCTION </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"------TRAINING------"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>confusion_plot(y_train,yp_train)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"------TEST------"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>confusion_plot(y_test,yp_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>------TRAINING------
+ACCURACY: 0.91
+NEGATIVE RECALL (Y=0): 1.00
+NEGATIVE PRECISION (Y=0): 0.85
+POSITIVE RECALL (Y=1): 0.82
+POSITIVE PRECISION (Y=1): 1.00
+[[188   0]
+ [ 34 153]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>------TEST------
+ACCURACY: 0.95
+NEGATIVE RECALL (Y=0): 1.00
+NEGATIVE PRECISION (Y=0): 0.91
+POSITIVE RECALL (Y=1): 0.90
+POSITIVE PRECISION (Y=1): 1.00
+[[62  0]
+ [ 6 57]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-17-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-the-tree" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-tree">Visualizing the tree</h3>
+<div class="cell" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tree.plot_tree(clf, filled<span class="op">=</span><span class="va">True</span>, rounded<span class="op">=</span><span class="va">True</span>, class_names<span class="op">=</span>[<span class="st">'savetheplanet'</span>,<span class="st">'climatechange'</span>], feature_names<span class="op">=</span>vectorizer.get_feature_names_out())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="119">
+<pre><code>[Text(0.6538461538461539, 0.9166666666666666, 'savetheplanet &lt;= 0.5\ngini = 0.5\nsamples = 375\nvalue = [188, 187]\nclass = savetheplanet'),
+ Text(0.46153846153846156, 0.75, 'climatechange &lt;= 0.5\ngini = 0.344\nsamples = 240\nvalue = [187, 53]\nclass = savetheplanet'),
+ Text(0.3076923076923077, 0.5833333333333334, 'ecija &lt;= 0.5\ngini = 0.483\nsamples = 125\nvalue = [74, 51]\nclass = savetheplanet'),
+ Text(0.23076923076923078, 0.4166666666666667, 'thevegandrakon &lt;= 0.5\ngini = 0.5\nsamples = 101\nvalue = [50, 51]\nclass = climatechange'),
+ Text(0.15384615384615385, 0.25, 'dont &lt;= 0.5\ngini = 0.494\nsamples = 90\nvalue = [50, 40]\nclass = savetheplanet'),
+ Text(0.07692307692307693, 0.08333333333333333, 'gini = 0.482\nsamples = 84\nvalue = [50, 34]\nclass = savetheplanet'),
+ Text(0.23076923076923078, 0.08333333333333333, 'gini = 0.0\nsamples = 6\nvalue = [0, 6]\nclass = climatechange'),
+ Text(0.3076923076923077, 0.25, 'gini = 0.0\nsamples = 11\nvalue = [0, 11]\nclass = climatechange'),
+ Text(0.38461538461538464, 0.4166666666666667, 'gini = 0.0\nsamples = 24\nvalue = [24, 0]\nclass = savetheplanet'),
+ Text(0.6153846153846154, 0.5833333333333334, 'environme &lt;= 0.5\ngini = 0.034\nsamples = 115\nvalue = [113, 2]\nclass = savetheplanet'),
+ Text(0.5384615384615384, 0.4166666666666667, 'evolution &lt;= 0.5\ngini = 0.017\nsamples = 114\nvalue = [113, 1]\nclass = savetheplanet'),
+ Text(0.46153846153846156, 0.25, 'gini = 0.0\nsamples = 113\nvalue = [113, 0]\nclass = savetheplanet'),
+ Text(0.6153846153846154, 0.25, 'gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = climatechange'),
+ Text(0.6923076923076923, 0.4166666666666667, 'gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = climatechange'),
+ Text(0.8461538461538461, 0.75, 'climateaction &lt;= 0.5\ngini = 0.015\nsamples = 135\nvalue = [1, 134]\nclass = climatechange'),
+ Text(0.7692307692307693, 0.5833333333333334, 'gini = 0.0\nsamples = 134\nvalue = [0, 134]\nclass = climatechange'),
+ Text(0.9230769230769231, 0.5833333333333334, 'gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = savetheplanet')]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="hyper-parameter-turning" class="level3">
+<h3 class="anchored" data-anchor-id="hyper-parameter-turning">Hyper-parameter turning</h3>
+<p>The “max_depth” hyper-parameter lets us control the number of layers in our tree. Iterating over “max_depth” to find the set of hyper-parameters with the lowest training AND test error.</p>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>test_results<span class="op">=</span>[]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>train_results<span class="op">=</span>[]</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num_layer <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">20</span>):</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> tree.DecisionTreeClassifier(max_depth<span class="op">=</span>num_layer)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> model.fit(X_train1, y_train)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    yp_train<span class="op">=</span>model.predict(X_train1)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    yp_test<span class="op">=</span>model.predict(X_test1)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(y_pred.shape)</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    test_results.append([num_layer,accuracy_score(y_test, yp_test),recall_score(y_test, yp_test,pos_label<span class="op">=</span><span class="dv">0</span>),recall_score(y_test, yp_test,pos_label<span class="op">=</span><span class="dv">1</span>)])</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    train_results.append([num_layer,accuracy_score(y_train, yp_train),recall_score(y_train, yp_train,pos_label<span class="op">=</span><span class="dv">0</span>),recall_score(y_train, yp_train,pos_label<span class="op">=</span><span class="dv">1</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="121">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.legend_handler <span class="im">import</span> HandlerLine2D</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT 1: ACCURACY SCORE</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> plt.plot(pd.DataFrame(train_results)[<span class="dv">0</span>], pd.DataFrame(train_results)[<span class="dv">1</span>], <span class="st">'b'</span>, label<span class="op">=</span><span class="st">"Train Accuracy"</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> plt.plot(pd.DataFrame(test_results)[<span class="dv">0</span>], pd.DataFrame(test_results)[<span class="dv">1</span>], <span class="st">'r'</span>, label<span class="op">=</span><span class="st">"Test Accuracy"</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"ACCURACY (Y=0): Training (blue) and Test (red)"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of layers in decision tree (max depth)'</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT 2: RECALL SCORE (Y=0)</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> plt.plot(pd.DataFrame(train_results)[<span class="dv">0</span>], pd.DataFrame(train_results)[<span class="dv">2</span>], <span class="st">'b'</span>, label<span class="op">=</span><span class="st">"Train Recall"</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> plt.plot(pd.DataFrame(test_results)[<span class="dv">0</span>], pd.DataFrame(test_results)[<span class="dv">2</span>], <span class="st">'r'</span>, label<span class="op">=</span><span class="st">"Test Recall"</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"RECALL (Y=0): Training (blue) and Test (red)"</span>)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of layers in decision tree (max depth)'</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT 3:ACCURACY SCORE FOR CLASS 1</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> plt.plot(pd.DataFrame(train_results)[<span class="dv">0</span>], pd.DataFrame(train_results)[<span class="dv">3</span>], <span class="st">'b'</span>, label<span class="op">=</span><span class="st">"Train Recall"</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> plt.plot(pd.DataFrame(test_results)[<span class="dv">0</span>], pd.DataFrame(test_results)[<span class="dv">3</span>], <span class="st">'r'</span>, label<span class="op">=</span><span class="st">"Test Recall"</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"RECALL (Y=1): Training (blue) and Test (red)"</span>)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of layers in decision tree (max depth)'</span>)</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="121">
+<pre><code>Text(0.5, 0, 'Number of layers in decision tree (max depth)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-20-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<ul style="background-color: white;">
+<li style="background-color: white;">As the depth increases, so do the accuracy and recall scores.</li>
+<li style="background-color: white;">At max depth = 12, the accuracy and recall scores of test data are at their highest.</li>
+<li style="background-color: white;">The accuracy and recall scores of train data continue to improve as the depth increases. Based on the information in the graphs above, the optimal tree has a maximum depth of 12.</li>
+</ul>
+<p>After choosing the optimal tree depth, the training model, the model achieves 97% accuracy with 95% negative precision and 100% positive precision. And the predicted test data is 97% accurate, with 94% negative precision and 100% positive precision.</p>
+<div class="cell" data-execution_count="122">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> tree</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> tree.DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.fit(X_train1, y_train)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>yp_train<span class="op">=</span>model.predict(X_train1)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>yp_test<span class="op">=</span>model.predict(X_test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"------TRAINING------"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>confusion_plot(y_train,yp_train)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"------TEST------"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>confusion_plot(y_test,yp_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>------TRAINING------
+ACCURACY: 0.97
+NEGATIVE RECALL (Y=0): 1.00
+NEGATIVE PRECISION (Y=0): 0.95
+POSITIVE RECALL (Y=1): 0.95
+POSITIVE PRECISION (Y=1): 1.00
+[[188   0]
+ [ 10 177]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>------TEST------
+ACCURACY: 0.97
+NEGATIVE RECALL (Y=0): 1.00
+NEGATIVE PRECISION (Y=0): 0.94
+POSITIVE RECALL (Y=1): 0.94
+POSITIVE PRECISION (Y=1): 1.00
+[[62  0]
+ [ 4 59]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-22-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Visualizing the optimal tree</p>
+<div class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tree.plot_tree(model, filled<span class="op">=</span><span class="va">True</span>, rounded<span class="op">=</span><span class="va">True</span>, class_names<span class="op">=</span>[<span class="st">'savetheplanet'</span>,<span class="st">'climatechange'</span>], feature_names<span class="op">=</span>vectorizer.get_feature_names_out())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="124">
+<pre><code>[Text(0.775, 0.9615384615384616, 'savetheplanet &lt;= 0.5\ngini = 0.5\nsamples = 375\nvalue = [188, 187]\nclass = savetheplanet'),
+ Text(0.65, 0.8846153846153846, 'climatechange &lt;= 0.5\ngini = 0.344\nsamples = 240\nvalue = [187, 53]\nclass = savetheplanet'),
+ Text(0.55, 0.8076923076923077, 'showing &lt;= 0.5\ngini = 0.483\nsamples = 125\nvalue = [74, 51]\nclass = savetheplanet'),
+ Text(0.5, 0.7307692307692307, 'mentoo &lt;= 0.5\ngini = 0.5\nsamples = 101\nvalue = [50, 51]\nclass = climatechange'),
+ Text(0.45, 0.6538461538461539, 'dont &lt;= 0.5\ngini = 0.494\nsamples = 90\nvalue = [50, 40]\nclass = savetheplanet'),
+ Text(0.4, 0.5769230769230769, 'sustainability &lt;= 0.5\ngini = 0.482\nsamples = 84\nvalue = [50, 34]\nclass = savetheplanet'),
+ Text(0.35, 0.5, 'company &lt;= 0.5\ngini = 0.465\nsamples = 79\nvalue = [50, 29]\nclass = savetheplanet'),
+ Text(0.3, 0.4230769230769231, 'nicochan &lt;= 0.5\ngini = 0.444\nsamples = 75\nvalue = [50, 25]\nclass = savetheplanet'),
+ Text(0.25, 0.34615384615384615, 'elagoradiario &lt;= 0.5\ngini = 0.417\nsamples = 71\nvalue = [50, 21]\nclass = savetheplanet'),
+ Text(0.2, 0.2692307692307692, 'climatecorporat &lt;= 0.5\ngini = 0.389\nsamples = 68\nvalue = [50, 18]\nclass = savetheplanet'),
+ Text(0.15, 0.19230769230769232, 'daily &lt;= 0.5\ngini = 0.355\nsamples = 65\nvalue = [50, 15]\nclass = savetheplanet'),
+ Text(0.1, 0.11538461538461539, 'refi &lt;= 0.5\ngini = 0.312\nsamples = 62\nvalue = [50, 12]\nclass = savetheplanet'),
+ Text(0.05, 0.038461538461538464, 'gini = 0.278\nsamples = 60\nvalue = [50, 10]\nclass = savetheplanet'),
+ Text(0.15, 0.038461538461538464, 'gini = 0.0\nsamples = 2\nvalue = [0, 2]\nclass = climatechange'),
+ Text(0.2, 0.11538461538461539, 'gini = 0.0\nsamples = 3\nvalue = [0, 3]\nclass = climatechange'),
+ Text(0.25, 0.19230769230769232, 'gini = 0.0\nsamples = 3\nvalue = [0, 3]\nclass = climatechange'),
+ Text(0.3, 0.2692307692307692, 'gini = 0.0\nsamples = 3\nvalue = [0, 3]\nclass = climatechange'),
+ Text(0.35, 0.34615384615384615, 'gini = 0.0\nsamples = 4\nvalue = [0, 4]\nclass = climatechange'),
+ Text(0.4, 0.4230769230769231, 'gini = 0.0\nsamples = 4\nvalue = [0, 4]\nclass = climatechange'),
+ Text(0.45, 0.5, 'gini = 0.0\nsamples = 5\nvalue = [0, 5]\nclass = climatechange'),
+ Text(0.5, 0.5769230769230769, 'gini = 0.0\nsamples = 6\nvalue = [0, 6]\nclass = climatechange'),
+ Text(0.55, 0.6538461538461539, 'gini = 0.0\nsamples = 11\nvalue = [0, 11]\nclass = climatechange'),
+ Text(0.6, 0.7307692307692307, 'gini = 0.0\nsamples = 24\nvalue = [24, 0]\nclass = savetheplanet'),
+ Text(0.75, 0.8076923076923077, 'environmentaleducation &lt;= 0.5\ngini = 0.034\nsamples = 115\nvalue = [113, 2]\nclass = savetheplanet'),
+ Text(0.7, 0.7307692307692307, 'humanimpacts &lt;= 0.5\ngini = 0.017\nsamples = 114\nvalue = [113, 1]\nclass = savetheplanet'),
+ Text(0.65, 0.6538461538461539, 'gini = 0.0\nsamples = 113\nvalue = [113, 0]\nclass = savetheplanet'),
+ Text(0.75, 0.6538461538461539, 'gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = climatechange'),
+ Text(0.8, 0.7307692307692307, 'gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = climatechange'),
+ Text(0.9, 0.8846153846153846, 'much &lt;= 0.5\ngini = 0.015\nsamples = 135\nvalue = [1, 134]\nclass = climatechange'),
+ Text(0.85, 0.8076923076923077, 'gini = 0.0\nsamples = 134\nvalue = [0, 134]\nclass = climatechange'),
+ Text(0.95, 0.8076923076923077, 'gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = savetheplanet')]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="decision_tree_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion:</h3>
+<p>The model is yielding about 97% accuracy after choosing the optimal max-depth for the tree.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
