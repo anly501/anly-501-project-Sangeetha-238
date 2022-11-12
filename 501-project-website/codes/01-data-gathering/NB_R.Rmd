@@ -29,6 +29,10 @@ head(NB_data)
 str(data)
 ```
 ```{r}
+write.csv(NB_data, '../../data/temperature_data_labelled.csv', row.names = TRUE)
+```
+
+```{r}
 
 # Plot
 ggplot(NB_data, aes(x=Country, y=AverageTemperature)) + 
