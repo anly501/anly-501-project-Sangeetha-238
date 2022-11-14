@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>clustering</title>
+<title>CLUSTERING FOR TEXT DATA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 <link rel="stylesheet" href="../../styles.css">
-
 </head>
 
 <body class="fullcontent">
@@ -187,12 +186,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     
     </ul>
 
-
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
 
 <section id="clustering" class="level1">
 <h1>CLUSTERING</h1>
@@ -204,7 +216,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="import-the-required-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="import-the-required-libraries">Import the required Libraries</h3>
-<div class="cell" data-execution_count="53">
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -223,14 +237,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> MeanShift, estimate_bandwidth</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> cycle</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="read-the-data" class="level4">
 <h4 class="anchored" data-anchor-id="read-the-data">Read the data</h4>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'../../data/ny-air.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">'indicator_data_id'</span>,<span class="st">'indicator_id'</span>,<span class="st">'geo_type_name'</span>,<span class="st">'geo_type_name'</span>,<span class="st">'data_valuemessage'</span>, <span class="st">'name'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -286,27 +304,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>To get the information of the data being used.</p>
-<div class="cell" data-execution_count="55">
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 2769 entries, 0 to 2768
 Data columns (total 4 columns):
- #   Column            Non-Null Count  Dtype
----  ------            --------------  -----
- 0   measure           2769 non-null   int8 
- 1   geo_entity_id     2769 non-null   int64
- 2   geo_entity_name   2769 non-null   int8 
- 3   year_description  2769 non-null   int8 
-dtypes: int64(1), int8(3)
-memory usage: 29.9 KB</code></pre>
+ #   Column            Non-Null Count  Dtype 
+---  ------            --------------  ----- 
+ 0   measure           2769 non-null   object
+ 1   geo_entity_id     2769 non-null   int64 
+ 2   geo_entity_name   2769 non-null   object
+ 3   year_description  2769 non-null   object
+dtypes: int64(1), object(3)
+memory usage: 86.7+ KB</code></pre>
 </div>
 </div>
 <p>Checking for missing Values. The data was cleaned before and thus doesn’t have any missing values. If there are missing values the null values should be replaced with most common value for that column, to get optimal result.</p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#checking for missing values</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>measure             0
 geo_entity_id       0
 geo_entity_name     0
@@ -315,12 +339,15 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Coverting non-numerical data its corresonding categorical statistical Values.</p>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'measure'</span>] <span class="op">=</span> data[<span class="st">'measure'</span>].astype(<span class="st">'category'</span>).cat.codes</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'geo_entity_name'</span>] <span class="op">=</span> data[<span class="st">'geo_entity_name'</span>].astype(<span class="st">'category'</span>).cat.codes</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'year_description'</span>] <span class="op">=</span> data[<span class="st">'year_description'</span>].astype(<span class="st">'category'</span>).cat.codes</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -378,13 +405,19 @@ dtype: int64</code></pre>
 </section>
 <section id="normalizing-the-data" class="level4">
 <h4 class="anchored" data-anchor-id="normalizing-the-data">Normalizing the data</h4>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> scaler.fit_transform(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array([[-1.53565487, -1.72051886, -1.43105854, -0.42852969],
        [-1.53565487, -1.71373107, -1.39481877, -0.42852969],
        [-1.53565487, -1.70694327,  0.12725145, -0.42852969],
@@ -403,7 +436,9 @@ dtype: int64</code></pre>
 <p>Here, hyper parameter tuning method used is <strong>Elbow Method</strong>. This method is chosen because the dimension in the data set is small and elbow method is good for data with small dimension. For each value of k an average score for all cluster is computed. Distortion and inertia is computed to find the nearest centroid for each value.</p>
 <p>Finding the optimal K value for the data.</p>
 <p>K-means is the simplest clustering algorithm. It forms K clusters for n number of records. The alogorithm works as follows: <br> - First k is initialized randomly. It is called cluster centriods. In the code below this k value is 1 to 10. - For each k, inertia is calculated. Inertia is calculated by sqauring and summing the distance between each data point and its centroid. - A good model is one with low inertia and less number of clusters. - Distortion for each k value is calculated. It is the distance between most dominating centroid and sqaured distances between each observation. - Distortion should be low for optimal clusters.</p>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>kmeans_df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">'clusters'</span>, <span class="st">'inertia'</span>, <span class="st">'distortion'</span>])</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>i, random_state<span class="op">=</span><span class="dv">0</span>)</span>
@@ -411,7 +446,8 @@ dtype: int64</code></pre>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    kmeans_df <span class="op">=</span> kmeans_df.append({<span class="st">'clusters'</span>: i, <span class="st">'inertia'</span>: kmeans.inertia_, <span class="st">'distortion'</span>: <span class="bu">sum</span>(np.<span class="bu">min</span>(cdist(data, kmeans.cluster_centers_, <span class="st">'euclidean'</span>), axis<span class="op">=</span><span class="dv">1</span>))<span class="op">/</span>X.shape[<span class="dv">0</span>]}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>kmeans_df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -490,9 +526,12 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>kmeans_df.plot.line(x<span class="op">=</span><span class="st">"clusters"</span>, subplots<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([&lt;AxesSubplot:xlabel='clusters'&gt;, &lt;AxesSubplot:xlabel='clusters'&gt;],
       dtype=object)</code></pre>
 </div>
@@ -509,7 +548,9 @@ dtype: int64</code></pre>
 <section id="k-means-for-9-clusters." class="level4">
 <h4 class="anchored" data-anchor-id="k-means-for-9-clusters.">K means for 9 clusters.</h4>
 <p>Data is fit into K-means algorithm after choosing the optimal K value as 9. The labels are then predicted. A graph is plotted for 9 clusters for two variables in the data. We see that some of the clusters are overlapping.</p>
-<div class="cell" data-execution_count="71">
+<div class="cell" data-execution_count="10">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">9</span>, random_state<span class="op">=</span><span class="dv">1997</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.labels_</span>
@@ -518,6 +559,7 @@ dtype: int64</code></pre>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(centroids[:, <span class="dv">0</span>], centroids[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'black'</span>, s<span class="op">=</span><span class="dv">200</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'K-Means Clustering for K=9'</span>)</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="clustering_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -542,7 +584,9 @@ dtype: int64</code></pre>
 <section id="choosing-optimal-cluster-value-using-silhouette-score." class="level4">
 <h4 class="anchored" data-anchor-id="choosing-optimal-cluster-value-using-silhouette-score.">Choosing optimal cluster value using Silhouette score.</h4>
 <p>Silhouette co-efficient is a measure of how similar a data poin is within-cluster (cohesion) compared to other clusters. - Selected a range of k values - Coputed eps, min samples, and silhouette score for each k value.</p>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="11">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dbscan_df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">'eps'</span>, <span class="st">'min_samples'</span>, <span class="st">'clusters'</span>, <span class="st">'silhouette_score'</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.1</span>, <span class="fl">5.1</span>, <span class="fl">0.1</span>):</span>
@@ -559,7 +603,8 @@ dtype: int64</code></pre>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>            dbscan_df <span class="op">=</span> dbscan_df.append({<span class="st">'eps'</span>: i, <span class="st">'min_samples'</span>: j, <span class="st">'clusters'</span>: <span class="dv">0</span>, <span class="st">'silhouette_score'</span>: <span class="dv">0</span>}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>dbscan_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
 
@@ -619,19 +664,25 @@ dtype: int64</code></pre>
 <h4 class="anchored" data-anchor-id="plot-for-silhouette-scores-for-each-cluster-value.">Plot for Silhouette scores for each cluster value.</h4>
 <p>The value of silhouette coefficient is [-1,1] - 1 denotes that the data is very compact and is within the cluster. - -1 value denotes that the data is no where near the cluster. - 0 denotes that the clusters are overlapping.</p>
 <p>From the graph plotted below, the optimal cluster size is 3,eps is 1.6, and min_samples is 3.</p>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="12">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dbscan_df.plot.line(x<span class="op">=</span><span class="st">'clusters'</span>, y<span class="op">=</span><span class="st">'silhouette_score'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>&lt;AxesSubplot:xlabel='clusters'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="clustering_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="42">
+<div class="cell" data-execution_count="13">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>optimal_cluster_size <span class="op">=</span> dbscan_df[<span class="st">'clusters'</span>][dbscan_df[<span class="st">'silhouette_score'</span>] <span class="op">==</span> <span class="bu">max</span>(dbscan_df[<span class="st">'silhouette_score'</span>])]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>optimal_cluster_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>150    3.0
 151    3.0
 152    3.0
@@ -647,31 +698,42 @@ Name: clusters, dtype: float64</code></pre>
 </div>
 <p>After calculating the optimal values, the data is fit into DBSCAN algorithm. labels are predicted. -1 in labels is essentially noise. In this ecord data we don’t see any noise. The unique cluster labels are 0,1 and 2.</p>
 <p>The optimal cluster size is 3 , epsilon = 1.6 and min_sample = 3.</p>
-<div class="cell" data-execution_count="43">
+<div class="cell" data-execution_count="14">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">1.6</span>, min_samples<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dbscan.fit(X)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> dbscan.fit_predict(X)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>labels_DB <span class="op">=</span> dbscan.labels_</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels_DB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0 0 0 ... 0 0 0]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="44">
+<div class="cell" data-execution_count="15">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>np.unique(labels_DB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>array([0, 1, 2])</code></pre>
 </div>
 </div>
 <p>Count in each cluster is calculated. By this it can be said that many clusters are overlapping, which means the aire quality measure is not very dissimilar in NYC. A graph is plotted to show the same. Clusters is plotted against the measure to check the similarities within the air quality measure.</p>
-<div class="cell" data-execution_count="45">
+<div class="cell" data-execution_count="16">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Counter(labels_DB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>Counter({0: 2748, 1: 3, 2: 18})</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="72">
+<div class="cell" data-execution_count="17">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot clusters using PCA</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
@@ -682,6 +744,7 @@ Name: clusters, dtype: float64</code></pre>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Air Quality measures'</span>) </span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'DBSCAN Clusters'</span>)</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="clustering_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
@@ -710,14 +773,19 @@ Name: clusters, dtype: float64</code></pre>
 <li>The resulting dendrogram is a tree-based representation of the objects.</li>
 </ul>
 <p>Here, the data is fit into aglomerative clustering algorithm from the features or distance matrix. The labels are predicted. A dendogram is plotted and it is seen that the clusters are combined and two big clustters are formed. A dendogram is plotted showing the similarities between the entities.</p>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="18">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram, linkage</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> AgglomerativeClustering</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AgglomerativeClustering().fit(data)</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> model.labels_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="cell" data-execution_count="76">
+<div class="cell" data-execution_count="19">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create linkage for agglomerative clustering, and the dendrogram for the linkage. Suggest the optimal number of clusters based on the dendrogram.</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> linkage(data, method<span class="op">=</span><span class="st">'ward'</span>)</span>
@@ -728,6 +796,7 @@ Name: clusters, dtype: float64</code></pre>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Euclidean Distance'</span>)</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="clustering_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
