@@ -51,44 +51,49 @@
         </li> 
     
         <!-- tab without dropdown  -->
-        <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+        <li><a href="../codes/01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
     
         <!-- tab without dropdown  -->
-        <li><a href="./pages/introduction.html">Conclusion</a></li>
+        <li><a href="./Conclusion.html">Conclusion</a></li>
       </ul>
       <p>
-        <h3 style="text-align: Center; margin-left: 35px; margin-right: 35px;"> Naive Bayes</h3>
+        <h3 style="text-align: left; margin-left: 100px; margin-right: 60px; color: gray;"> Naive Bayes</h3>
       </p>
-      <h3 style="text-align: left; color:black; margin-left: 85px; margin-right: 35px;"> What is Naive Bayes?</h3>
+      <h3 style="text-align: left; color:black; margin-left: 100px; margin-right: 60px; color: gray;"> What is Naive Bayes?</h3>
       <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
         With the premise of predictor independence, it is a classification strategy based on the Bayes Theorem. In plain English, a Naive Bayes classifier makes the assumption that the existence of one feature in a class is unrelated to the presence of any other feature. It is simple to construct a Naive Bayes model, and it is very helpful for very big data sets. Naive Bayes is well renowned for being more effective than even the most complex classification techniques.
+        Despite their apparent oversimplified assumptions, naive Bayes classifiers have performed admirably in a variety of real-world applications, most notably document classification and spam filtering. To estimate the required parameters, they require a little amount of training data. (See the sources below for theoretical reasons why naive Bayes works well and on what types of data it does.)
+
+When compared to more advanced algorithms, Naive Bayes learners and classifiers can be exceedingly fast. Because the class conditional feature distributions are decoupled, each distribution can be estimated independently as a one-dimensional distribution. This, in turn, aids in the alleviation of problems caused by the curse of dimensionality.
     </p>
-        <h4 style="margin-left: 100px; margin-right: 100px;">
-            Types of Naive Bayes Classifier:</h4>   
+        <h5 style="margin-left: 100px; margin-right: 100px; color: gray;">
+            Types of Naive Bayes Classifier:</h5>   
     
-        <h4 style="margin-left: 100px; margin-right: 100px;">
-            Multinomial Naive Bayes:</h4>    
+        <h5 style="margin-left: 100px; margin-right: 100px; color: gray;">
+            Multinomial Naive Bayes:</h5>    
     <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
-        This is mostly used for document classification issues, such as determining whether a document falls under the sports, politics, technology, etc. category. The frequency of the terms included in the document is one of the features/predictors that the classifier uses.
+        This is mostly used for document classification issues, such as determining whether a document falls under the sports, politics, technology, etc. category. The frequency of the terms included in the document is one of the features/predictors that the classifier uses. The Naive Bayes method is a strong tool for analyzing text input and solving problems with numerous classes. Because the Naive Bayes theorem is based on the Bayes theorem, it is necessary to first comprehend the Bayes theorem notion. The Bayes theorem, which was developed by Thomas Bayes, estimates the likelihood of occurrence based on prior knowledge of the event's conditions. When predictor B itself is available, we calculate the likelihood of class A. It's based on the formula below: P(A|B) = P(A) * P(B|A)/P(B).
     </p>
-        <h4 style="margin-left: 100px; margin-right: 100px;">
-            Bernoulli Naive Bayes:</h4> 
+        <h5 style="margin-left: 100px; margin-right: 100px;color: gray;">
+            Bernoulli Naive Bayes:</h5> 
 
     <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
         Similar to the multinomial naive bayes, but using boolean variables as predictors. The only options for the factors we use to predict the class variable are yes or no, as in whether a word is in the text or not.
+        The main feature of Bernoulli Naive Bayes is that it accepts features only as binary values like true or false, yes or no, success or failure, 0 or 1 and so on. So when the feature values are binary we know that we have to use Bernoulli Naive Bayes classifier.
+        BeronoulliNB requires greater independence in dataset features. As a result, co relation in feature affected the algorithm's performance. This is the algorithm's main disadvantage.
     </p>
-    <h4 style="margin-left: 100px; margin-right: 100px;">
-        Gaussian Naive Bayes:</h4>   
+    <h5 style="margin-left: 100px; margin-right: 100px; color: gray;">
+        Gaussian Naive Bayes:</h5>   
     <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
-        When the predictors take up a continuous value and are not discrete, we assume that these values are sampled from a gaussian distribution.
+        When the predictors take up a continuous value and are not discrete, we assume that these values are sampled from a gaussian distribution. Gaussian Naive Bayes is a probabilistic classification algorithm that employs the Bayes theorem with strict independence conditions. The concept of independence in classification relates to the idea that the presence of one value of a feature does not influence the presence of another. Naive Bayes classifiers are recognized to be very expressive, scalable, and reasonably accurate in the context of machine learning, but their performance degrades fast as the training set grows. A variety of characteristics contribute to the success of naive Bayes classifiers. They are notable for the fact that they do not require any adjustment of the classification model's parameters, that they scale well with the size of the training data set, and that they can readily handle continuous features.
     </p>
-    <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
-        Naive Bayes in R</h2> 
+    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
+        Naive Bayes in R</h3> 
     <p style="font-size:14px; margin-left: 100px; margin-right: 100px;">
         The Naive bayes is applied on two data sets, to predict the temperature and to determine the air quality. The data sets are imported from the csv files. The data sets are cleaned and the missing values are replaced with the mean of the column. The data is split into training and testing data. The model is built using the training data and the model is tested using the testing data. The accuracy of the model is calculated and the confusion matrix is plotted. The model is built using the multinomial naive bayes and the bernoulli naive bayes. The accuracy of the model is calculated and the confusion matrix is plotted.
     </p> 
     <center>The snapshot of the dataset and the link to the csv file is attached below.</center>
-    <center style="margin-top: 35px;"><img alt="img" height="400px" src="../images/dataR1.png" width="600px"></center> 
+    <center style="margin-top: 60px;"><img alt="img" height="400px" src="../images/dataR1.png" width="600px"></center> 
 
     <center>
         <a href="../images/dataR1.png"> View </a>
@@ -97,7 +102,7 @@
     <center>
         <a href="../data/GlobalLandTemperaturesByMajorCity.csv"> Download CSV </a>
     </center> 
-    <center style="margin-top: 35px;"><img alt="img" height="400px" src="../images/dataR2.png" width="600px"></center>
+    <center style="margin-top: 60px;"><img alt="img" height="400px" src="../images/dataR2.png" width="600px"></center>
     <center>
         <a href="../images/dataR2.png"> View </a>
     </center> 
@@ -105,7 +110,7 @@
     <center>
         <a href="../data/ny-air.csv"> Download CSV </a>
     </center>
-    <center style="margin-top: 35px;">
+    <center style="margin-top: 60px;">
         The code for the Naive bayes model build and data cleaning for air quality data can be found here. <a href="../codes/01-data-gathering/R2_NB.html"> Click here </a>
     </center>
     <center style="margin-left: 100px; margin-right: 100px;">
@@ -118,9 +123,11 @@
     <center>
         <a href="../images/NB2VS.png"> View </a>
     </center>
+    <br>
     <center >
         The graph above shows all the variables and categories the model is applied to with their frequencies.
     <center>
+        <br>
         <img alt="img" height="400px" src="../images/modelsnapshot_R.png" width="600px">
     </center>
     <center>
@@ -132,6 +139,7 @@
     <center>
         <a href="../images/accuray1R.png"> View Accuracy</a>
     </center>
+    <br>
     <center >
         Confusion matrix for the model is plotted below.
     </center>
@@ -141,13 +149,14 @@
     <center>
         <a href="../images/NB2.png"> View </a>
     </center>
-    <center style="margin-top: 35px;">
+    <center style="margin-top: 60px;">
         The code for the Naive bayes model build and data cleaning for temperature can be found here. <a href="../codes/01-data-gathering/NB_R.html"> Click here </a>
     </center>
-    <center style="margin-left: 100px; margin-right: 100px;">
+    <p style="margin-left: 150px; margin-right: 150px; text-align: left;">
         The naive bayes model is applied to find out the conditional probability  Below is the snapshot of the model.
-        Before builiding the model the data was split into train and test data and the test data is yeilding accuracy of 95%. The model is trained to predict the temperature variation in different countries. 
-    </center>
+        Before builiding the model the data was split into train and test data and the test data is yeilding accuracy of 95%. <br>
+        The model is trained to predict the temperature variation in different countries. The model is predicting if the temperature is high, normal or lower than the expected value. The data is collected for the temperature record for past five years through which the expectation assumptions are made and Bayes model is applied to predict the temperature variation.
+    </p>
     <center>
         <img alt="img" height="400px" src="../images/NB1VS.png" width="600px">
     </center>
@@ -172,10 +181,17 @@
     <center>
         <a href="../images/NB1.png"> View </a>
     </center>
-    <center style="margin-left: 100px; margin-right: 100px;">
-        <h3><b>Conclusion</b></h3>
-        <p>
-            The intention was to train the model to predict the temperature, and air quality and it's effects. The accurancy of models yeilded 84% and 95% respectively. The model can be improved by using more data and by using more complex models.
+    <center style="margin-left: 80px; margin-right: 100px; ">
+        <h3 style="color: gray;"><b>Conclusion</b></h3>
+        <p style="margin-left: 150px; margin-right: 150px; text-align: left;">
+            The goal was to train the model to predict temperature, air quality, and its impacts.
+To do this, data on air quality and its effects on individuals was analyzed.
+After separating the model into train and test data, the model was trained to predict air quality, age group, and number of persons impacted by pollution. The model has an accuracy of 84%. The accuracy for this model and data set is pretty good.
+            <br>
+            <br>
+            The algorithm was trained to forecast temperature variations in several countries. The model predicts whether the temperature is higher, normal, or lower than predicted. The data for the temperature record for the previous five years is collected, the expectation assumptions are formed, and the Bayes model is used to forecast the temperature difference.
+The accuracy of the models was 95% in each case. The precision for this data is fairly good, indicating that the model can accurately forecast temperature variance.
+More data  can be used to improve the model.
         </p>
     </center>
 </body>

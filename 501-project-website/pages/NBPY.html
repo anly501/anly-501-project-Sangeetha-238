@@ -51,17 +51,25 @@
         </li> 
     
         <!-- tab without dropdown  -->
-        <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+        <li><a href="../codes/01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
     
         <!-- tab without dropdown  -->
-        <li><a href="./pages/introduction.html">Conclusion</a></li>
+        <li><a href="./Conclusion.html">Conclusion</a></li>
       </ul>
-      <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+      <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
         Naive Bayes in python</h2> 
         <p style="display: block;
         margin-block-start: 1em;
         margin-block-end: 1em;
-        margin-left: 100px; margin-right: 100px;"> In Python, the naive bayes is computed using a text dataset. The tweets are based on the hashtags "climatechange" and "savetheplanet." The goal of collecting this text data was to learn about people's perspectives on how important climate change is in today's world. To get a quick overview of the data, a wordcloud of both the hashtags has been made.</p>
+        margin-left: 100px; margin-right: 100px;"> Naive BAyes is computed on Text and Record data using python. The text data is collected fron twitter on the hashtags "climatechange" and "savetheplanet." 
+        The goal of collecting this text data was to learn about people's perspectives on how important climate change is in today's world.
+         To get a quick overview of the data, a wordcloud of both the hashtags has been made. Naive Bayes is is used to tarin the model to classify the tweets between these two hashtags.
+        </p>
+        <p style="display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-left: 100px; margin-right: 100px;"> For record data, the data is collected to see the elements emitted into the environment from croop residue and waste food disposal. The model is trained to predict various emission to the environment from crop residue and food disposal.</p>
+
         <center>
         <img alt="img" height="400px" src="../images/NBPY1.png" width="600px">
     </center>
@@ -69,7 +77,7 @@
         <img alt="img" height="400px" src="../images/NBPY2.png" width="600px">
     </center>
     <center style="margin-top:35px;">
-        Clean and combined data for both the hashtags can be seen below.
+        Data cleaning is done on the data for both the hashtags. Clean and combined data for both the hashtags can be seen below.
     </center>
     <center style="margin-top:35px;">
         <img alt="img" height="400px" src="../images/clean_combinedtwitter.png" width="600px">
@@ -78,7 +86,7 @@
         <a href="../images/clean_combinedtwitter.png">View</a>
     </center>
     <center style="margin-top:35px;">
-        data distribution for each label before balancing the data.
+        Data distribution for each label before balancing the data can be seen below.
     </center>
     <center style="margin-top:35px;">
         <img alt="img" height="400px" src="../images/labelinfo.png" width="600px">
@@ -86,7 +94,7 @@
     <center>
         <a href="../images/labelinfo.png">View</a>
     </center>
-    <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+    <h2 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
         Model builiding</h2> 
     <center>
         <a href="../codes/01-data-gathering/NB_py.html">Code for the model building</a>
@@ -97,12 +105,12 @@
     </p>
 </center>
 <center>
-<h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+<h3 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
     Model 1</h3> 
 </center>
     <center>
         <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
-            The first naive bayes model was developed. The hyperparameter in this model is alpha = 1. The accuracy of this model is 89%.
+            The first naive bayes model was developed. The hyper parameter in this model s alpha = 1. The accuracy of this model is 89%.
         </p>
         <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">The snapshot of model 1</p>
     </center>
@@ -111,12 +119,12 @@
     <img alt="img" height="400px" src="../images/model1py.png" width="600px">
 </center>
 <center>
-    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
         Model 2</h3> 
     </center>
 <center>
     <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
-        The first naive bayes model was developed. The hyperparameter in this model is alpha = 0. The accuracy of this model is same as model 1 in this case, that is 89%.
+        The second naive bayes model was developed. The hyperparameter in this model is alpha = 0. The accuracy of this model is same as model 1 in this case, that is 89%.
     </p>
     <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">The snapshot of model 2</p>
 </center>
@@ -126,12 +134,12 @@
 </center>
 
 <center>
-    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
+    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
         Model 3</h3> 
     </center>
 <center>
     <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
-        The first naive bayes model was developed. The hyperparameter in this model is alpha = 5. The accuracy of this model 92%.
+        The third naive bayes model was developed. The hyperparameter in this model is alpha = 5. The accuracy of this model 92%.
     </p>
     <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">The snapshot of model 3</p>
 </center>
@@ -139,14 +147,51 @@
 <center>
 <img alt="img" height="400px" src="../images/model3.1py.png" width="600px">
 </center>
-<center>
-    <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px;">
-        Conclusion</h3> 
+
+<br>
+<h2 style=" margin-left: 50px; margin-right: 50px;color:grey">Naive Bayes on Record Data</h2>
+<p style="text-align: justify; margin-left: 50px; margin-right: 50px;">
+    Naive Bayes is applied on the data set of the food disposal emission and crop residual emission. The model is trained to identify the emission element. The code fro model building can be found below.</p>
+    <center>
+        <a href="../codes/01-data-gathering/NB_record_data_py.html">Code for the model building</a>
     </center>
-<center>
-    <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
-        The goal was to find people's opinion on today's climate change using recent twitter data. The Naive Bayes model classified tweets generated by Twitter into different hashtag classes. The models' accuracy is 89% and 92%, respectively. The precision is quite high.
+    <center>
+    <p style="text-align: justify; margin-left: 50px; margin-right: 50px;">
+        The dataset is divided into training and testing sets before the model is built. The split ratio in the training set is 0.75 and in the testing set it is 0.25. 
     </p>
-</center>
+    </center>
+    <center>
+        <p style="text-align: justify; margin-left: 50px; margin-right: 50px;">
+            The model is 74% accurate. The confusion matrix for the model is shown below.
+        <p style="text-align: justify; margin-left: 50px; margin-right: 50px;">The snapshot of the Report</p>
+        <img alt="img" height="400px" src="../images/NB_Record_py.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/NB_Record_py.png">View Results</a>
+    </center>
+    <br>
+    <center>
+        <p style="text-align: justify; margin-left: 50px; margin-right: 50px;">The snapshot of the Confusion Matrix</p>
+        <img alt="img" height="400px" src="../images/NB_record_py_confusion_matrix.png" width="600px">
+    </center>
+    <center>
+        <a href="../images/NB_Record_py.png">View image</a>
+    </center>
+    <center>
+        <h3 style="text-align: Center; margin-left: 100px; margin-right: 100px; color: gray;">
+            Conclusion</h3> 
+        </center>
+    <center>
+        <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+        The goal was to find people's opinion on today's climate change using recent twitter data. The Naive Bayes model classified tweets generated by Twitter into different hashtag classes. 
+        The model trained to classify tweets into different hashtags.The model was able to classify the tweets with an accuracy of 92%. 
+        </p>
+    </center>
+    <center>
+        <p style="text-align: justify; margin-left: 100px; margin-right: 100px;">
+            On the record data, the model was trained to classify different elements of the emission. The data set was divided into training and testing sets. The model was able to classify the elements with an accuracy of 74%.
+        </p>
+    </center>
 </body>
+
 </html>

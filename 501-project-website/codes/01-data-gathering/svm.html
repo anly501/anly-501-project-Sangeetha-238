@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-  <!-- point to css stylesheet -->
-
 
 <title>svm</title>
-
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +100,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles1.css">
+
 </head>
 
 <body class="fullcontent">
@@ -111,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <!-- link back to homepage -->
     <li><a href="../../index.html">About me</a></li>
     
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../../pages/introduction.html">Introduction</a></li>
 
     <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
@@ -121,16 +119,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <li><a href="../../pages/data-gathering.html">Data-gathering</a></li>
 
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../../pages/data_cleaning.html">Data Cleaning</a></li>
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../../pages/data_visualisation.html">Exploring Data</a></li>
 
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+    <li class="dropdwn">
+      <a href="javascript:void(0)" class="drpbtn">Naive Bayes</a>
       
-      <div class="dropdown-content">
+      <div class="dropdwn-content">
           
       <a href="../../pages/NBR.html">NB with R</a>
       <a href="../../pages/NBPY.html">NB with python</a>
@@ -138,47 +136,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
 
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../01-data-gathering/decision_tree.html">Decision Trees</a></li>
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../01-data-gathering/svm.html">SVM</a></li>
 
-    <!-- tab with dropdown -->
-    <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">Clustering</a>
-        
-        <div class="dropdown-content">
-            
-        <a href="../01-data-gathering/clustering.html">Clustering</a>
-        <a href="../01-data-gathering/cluster_text.html">Clustering on Text data</a>
-        </div>
-    </li> 
+    <li class="dropdwn">
+      <a href="javascript:void(0)" class="drpbtn">Clustering</a>
+      
+      <div class="dropdwn-content">
+          
+      <a href="../01-data-gathering/clustering.html">Clustering</a>
+      <a href="../01-data-gathering/cluster_text.html">Clustering on Text data</a>
+      </div>
+  </li> 
 
-    <!-- tab without dropdown  -->
-    <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+    <!-- tab without dropdwn  -->
+    <li><a href="../01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
 
-    <!-- tab without dropdown  -->
-    <li><a href="./pages/introduction.html">Conclusion</a></li>
+    <!-- tab without dropdwn  -->
+    <li><a href="../../pages/Conclusion.html">Conclusion</a></li>
 
     
-    <!-- tab with dropdown -->
-    <!-- <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">local reference</a>
+    <!-- tab with dropdwn -->
+    <!-- <li class="dropdwn">
+        <a href="javascript:void(0)" class="drpbtn">local reference</a>
         
-        <div class="dropdown-content">
+        <div class="dropdwn-content">
             
         <a href="./pages/html-cheatsheet/cheatsheet.html">html</a>
         <a href="./pages/markdown-cheatsheet/markdown-cheatsheet.html">markdown</a>
         </div>
     </li> -->
     
-    <!-- tab with dropdown -->
+    <!-- tab with dropdwn -->
     
-    <!-- <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">external links</a>
+    <!-- <li class="dropdwn">
+        <a href="javascript:void(0)" class="drpbtn">external links</a>
         
-        <div class="dropdown-content">
+        <div class="dropdwn-content">
         open in new tab use:   <a href="https://www.google.com/" target="_blank">google</a>
         open in same tab use:  <a href="https://www.google.com/">google</a>
         <a href="https://www.google.com/" target="_blank">google</a>
@@ -204,24 +201,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="about-data" class="level3">
 <h3 class="anchored" data-anchor-id="about-data">About data</h3>
 <p>The SVM is applied to classify the air quality, people affected by the pollution and their age group in New york city. The model is trained to predict the air quality and the age group and the number of people affected by the pollution.</p>
+<p>The second set of data is emissions due to waste food disposal and crop residue. This data gives an overview of all kinds of emmission due to basic human activity like agriculture and waste food disposal. This data can be used as an example to show human impact on climate change.</p>
 <section id="importing-required-librarires" class="level4">
 <h4 class="anchored" data-anchor-id="importing-required-librarires">Importing required librarires:</h4>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer, TfidfVectorizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="reading-the-data-and-removing-unwanted-columns" class="level4">
 <h4 class="anchored" data-anchor-id="reading-the-data-and-removing-unwanted-columns">Reading the data and removing unwanted columns:</h4>
 <div class="cell" data-execution_count="13">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'../../data/ny-air.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.dropna(inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">'indicator_data_id'</span>,<span class="st">'indicator_id'</span>,<span class="st">'geo_type_name'</span>,<span class="st">'geo_type_name'</span>,<span class="st">'data_valuemessage'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
@@ -284,15 +288,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="36">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataframe into X and y and then split X and y into train and test sets.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">"name"</span>])</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#y is the activity column</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">"name"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="37">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="37">
 
 <div>
@@ -397,18 +407,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Before splitting the data into training and testing, it is scaled and labeled, with label encoding referring to converting the labels into a numeric form that is machine-readable.</p>
 <p>By splitting our dataset into training and testing data, we can reserve some data to verify our model’s effectiveness. We do this split before we build our model in order to test the effectiveness against data that our model hasn’t yet seen.</p>
 <div class="cell" data-execution_count="38">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#transform the string values into numbers</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'measure'</span>] <span class="op">=</span> le.fit_transform(X[<span class="st">'measure'</span>])</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'geo_entity_name'</span>] <span class="op">=</span> le.fit_transform(X[<span class="st">'geo_entity_name'</span>])</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'year_description'</span>] <span class="op">=</span> le.fit_transform(X[<span class="st">'year_description'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="53">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="54">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>O3-Attributable Asthma ED Visits                                                317
 O3-Attributable Asthma Hospitalizations                                         313
@@ -439,6 +458,8 @@ Name: name, dtype: int64</code></pre>
 <p>To be more specific, the svc() function can be used to fit a support vector classifier if the kernel argument is set to “linear.” This function uses a slightly modified version of the standard formulation to implement the support vector classifier. We can calculate the amount of money lost due to a margin violation using a cost argument. When the cost argument is weak, the margins are broad, and a large number of support vectors are either on the margin or violate it. When the cost argument is significant, the margins are low, and there are only a few support vectors that are either on the margin or violate the margin.</p>
 <p>Using the svc() method, we can tailor the support vector classifier to the value supplied for the cost parameter, denoted by the letter ‘C.’ For this model, the cost margin is set to 0.5, and when performing supervised machine learning (classification) on categorical data, we frequently use a confusion matrix to calculate the number of correct and incorrect predictions for different classes.</p>
 <div class="cell" data-execution_count="55">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be linear and C between 0.35-0.75. </span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
@@ -447,13 +468,17 @@ Name: name, dtype: int64</code></pre>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="56">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the confusion matrix and classification report for the train and test data. </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
   _warn_prf(average, modifier, msg_start, len(result))
@@ -470,13 +495,19 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="57">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame. </span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="59">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="59">
 
 <div>
@@ -666,8 +697,11 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="60">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="60">
 
 <div>
@@ -857,9 +891,12 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="61">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>disp.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="61">
 <pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff598bedb10&gt;</code></pre>
 </div>
@@ -872,19 +909,25 @@ Name: name, dtype: int64</code></pre>
 <p>Polynomial Kernel represents the degree of similarity between vectors in the training set of data in a feature space over polynomials of the variables used in the kernel. The polynomial kernel is a machine learning kernel function that is commonly used with support vector machines (SVMs) and other kernelized models to represent the similarity of vectors (training samples) in a feature space over polynomials of the original variables and facilitate non-linear model learning.</p>
 <p>To be more specific, a support vector classifier can be fitted using the input kernel = “poly” and the svc() function. We can get an idea of the financial damage caused by a margin violation by presenting the cost of it. We can adjust the support vector classifier to the value of the cost argument by calling the svc() function (denoted by the letter C). We frequently use a confusion matrix to determine the count of accurate and inaccurate predictions for distinct classes when performing supervised machine learning (classification) on categorical data; in this model, we set the cost margin to 0.5.</p>
 <div class="cell" data-execution_count="62">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be polynomial, C between 0.35-0.75, and degree = 2. </span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, C<span class="op">=</span><span class="fl">0.5</span>, degree<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="63">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix and classification report for the train and test data. </span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
   _warn_prf(average, modifier, msg_start, len(result))
@@ -901,13 +944,19 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="64">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="65">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="65">
 
 <div>
@@ -1097,8 +1146,11 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="66">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="66">
 
 <div>
@@ -1288,9 +1340,12 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="67">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>dist.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="67">
 <pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff598bee9e0&gt;</code></pre>
 </div>
@@ -1302,19 +1357,25 @@ Name: name, dtype: int64</code></pre>
 <p>## SVM with RBF kernels</p>
 <p>RBF kernels are the broadest type of kernelization. They are also one of the most commonly used kernels due to their resemblance to the Gaussian distribution, which is one of the most common. It is a kernel that can be used for a variety of applications and is used when there is no prior knowledge about the data. It is used specifically when there is no prior knowledge of the data. To be more specific, a support vector classifier can be fitted using the input kernel = “rbf” and the svc() function. We can get an idea of the financial damage caused by a margin violation by presenting the cost of it. We can adjust the support vector classifier to the value of the cost argument by calling the svc() function (denoted by the letter C). We frequently use a confusion matrix to determine the count of accurate and inaccurate predictions for distinct classes when performing supervised machine learning (classification) on categorical data; in this model, we set the cost margin to 0.5.</p>
 <div class="cell" data-execution_count="68">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be linear and C between 0.35-0.75.</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'rbf'</span>, C<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="69">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix and classification report for the train and test data. </span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
   _warn_prf(average, modifier, msg_start, len(result))
@@ -1331,13 +1392,19 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="70">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame.</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="71">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="71">
 
 <div>
@@ -1527,8 +1594,11 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="72">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="72">
 
 <div>
@@ -1718,9 +1788,12 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="73">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>dist.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="73">
 <pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff59b002f50&gt;</code></pre>
 </div>
@@ -1736,19 +1809,25 @@ Name: name, dtype: int64</code></pre>
 <h2 class="anchored" data-anchor-id="svm-with-sigmoid-kernels">SVM with Sigmoid kernels</h2>
 <p>The Sigmoid function serves as an activation function, which is used to add non-linearity to a machine learning model. Essentially, the function determines which values to pass as output and which to reject.</p>
 <div class="cell" data-execution_count="74">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import svc from sklearn.svm and classsification_report, confusion_matrix from sklearn.metrics.</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classfier on the training data and predict on the test data. Set the classifier to be linear and C between 0.35-0.75. </span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'sigmoid'</span>, C<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>yp_train <span class="op">=</span> clf.predict(X_train)</span>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>yp_test <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="75">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix and classification report for the train and test data. </span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>train_confusion_matrix <span class="op">=</span> confusion_matrix(y_train, yp_train)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>test_confusion_matrix <span class="op">=</span> confusion_matrix(y_test, yp_test)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>train_classification_report <span class="op">=</span> classification_report(y_train, yp_train, output_dict<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>test_classification_report <span class="op">=</span> classification_report(y_test, yp_test, output_dict<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
   _warn_prf(average, modifier, msg_start, len(result))
@@ -1765,13 +1844,19 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="76">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results in a data frame.</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test <span class="op">=</span> pd.DataFrame(test_classification_report).transpose()</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df_classification_report_train <span class="op">=</span> pd.DataFrame(train_classification_report).transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="77">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for test</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="77">
 
 <div>
@@ -1961,8 +2046,11 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="78">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the results data frame for train</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df_classification_report_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="78">
 
 <div>
@@ -2152,9 +2240,12 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="79">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix for the test data. Remember to use the ConfusionMatrixDisplay function.</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>test_confusion_matrix, display_labels<span class="op">=</span>clf.classes_)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>dist.plot(xticks_rotation<span class="op">=</span><span class="st">'vertical'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="79">
 <pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7ff5bfd53f40&gt;</code></pre>
 </div>
@@ -2163,10 +2254,348 @@ Name: name, dtype: int64</code></pre>
 </div>
 </div>
 <p>With Sigmoid, the model is yeilding 9% accuracy for train data and 12% for test data.</p>
+<p>SVM is done on Food disposal and crop residue data, to classify different emissions to the nevironment. Various kernels is used to find out the best model for classification.</p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Reading the clean data</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#import the data</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>food_data <span class="op">=</span>pd.read_csv(<span class="st">'../../data/food_crop_data.csv'</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>food_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Domain</th>
+      <th>Area</th>
+      <th>Element</th>
+      <th>Item</th>
+      <th>Year</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1990</td>
+      <td>10.629803</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1991</td>
+      <td>10.934600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1992</td>
+      <td>11.138956</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1993</td>
+      <td>11.335046</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1994</td>
+      <td>11.754348</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Converting non numeric columns to numeric using label encoder.</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>food_data[<span class="st">'Area'</span>] <span class="op">=</span> le.fit_transform(food_data[<span class="st">'Area'</span>])</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>food_data[<span class="st">'Element'</span>] <span class="op">=</span> le.fit_transform(food_data[<span class="st">'Element'</span>])</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>food_data[<span class="st">'Item'</span>] <span class="op">=</span> le.fit_transform(food_data[<span class="st">'Item'</span>])</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>food_data[<span class="st">'Domain'</span>] <span class="op">=</span> le.fit_transform(food_data[<span class="st">'Domain'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Training and testing the data</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> food_data.drop([<span class="st">'Element'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> food_data[<span class="st">'Element'</span>]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>X_train,X_test,y_train,y_test <span class="op">=</span> train_test_split(X,y,test_size<span class="op">=</span><span class="fl">0.3</span>,random_state<span class="op">=</span><span class="dv">46</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="svm-on-linear-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="svm-on-linear-kernel">SVM on Linear Kernel</h2>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SVM Classifier on df on linear kernel</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>svc <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'linear'</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>svc.fit(X_train,y_train)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> svc.predict(X_test)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy Score:'</span>,accuracy_score(y_test,y_pred))</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Confusion Matrix:'</span>,confusion_matrix(y_test,y_pred))</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Classification Report:'</span>,classification_report(y_test,y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Score: 0.8935361216730038
+Confusion Matrix: [[ 73   0   0   0]
+ [  0  48   0  28]
+ [  0   0  10   0]
+ [  0   0   0 104]]
+Classification Report:               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        73
+           1       1.00      0.63      0.77        76
+           2       1.00      1.00      1.00        10
+           3       0.79      1.00      0.88       104
+
+    accuracy                           0.89       263
+   macro avg       0.95      0.91      0.91       263
+weighted avg       0.92      0.89      0.89       263
+</code></pre>
+</div>
+</div>
+<p>Linear kernel is giving about 89% accuracy. The confusion matrix is done for the same.</p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot confusion matrix for svm classifier with labels</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> plot_confusion_matrix</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>plot_confusion_matrix(svc,X_test,y_test,display_labels<span class="op">=</span>[<span class="st">'Emissions (N2O)'</span>,<span class="st">'Emissions (CO2)'</span>,<span class="st">'Emissions (CH4)'</span>,<span class="st">'Biomass burned (dry matter)'</span>],cmap<span class="op">=</span>plt.cm.Blues,ax<span class="op">=</span>ax)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_confusion_matrix is deprecated; Function `plot_confusion_matrix` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: ConfusionMatrixDisplay.from_predictions or ConfusionMatrixDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-38-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="svm-on-polynomial-kernel." class="level2">
+<h2 class="anchored" data-anchor-id="svm-on-polynomial-kernel.">SVM on Polynomial Kernel.</h2>
+<div class="cell" data-execution_count="10">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SVM Classifier on food_data on polynomial kernel</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>svc <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'poly'</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>svc.fit(X_train,y_train)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> svc.predict(X_test)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy Score:'</span>,accuracy_score(y_test,y_pred))</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Confusion Matrix:'</span>,confusion_matrix(y_test,y_pred))</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Classification Report:'</span>,classification_report(y_test,y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Score: 0.4600760456273764
+Confusion Matrix: [[ 45  28   0   0]
+ [  0  76   0   0]
+ [  0  10   0   0]
+ [  0 104   0   0]]
+Classification Report:               precision    recall  f1-score   support
+
+           0       1.00      0.62      0.76        73
+           1       0.35      1.00      0.52        76
+           2       0.00      0.00      0.00        10
+           3       0.00      0.00      0.00       104
+
+    accuracy                           0.46       263
+   macro avg       0.34      0.40      0.32       263
+weighted avg       0.38      0.46      0.36       263
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<p>Model yields 46% Accuracy. Below is the confusion Matrix.</p>
+<div class="cell" data-execution_count="11">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot confusion matrix for svm classifier with labels</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> plot_confusion_matrix</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>plot_confusion_matrix(svc,X_test,y_test,display_labels<span class="op">=</span>[<span class="st">'Emissions (N2O)'</span>,<span class="st">'Emissions (CO2)'</span>,<span class="st">'Emissions (CH4)'</span>,<span class="st">'Biomass burned (dry matter)'</span>],cmap<span class="op">=</span>plt.cm.Blues,ax<span class="op">=</span>ax)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_confusion_matrix is deprecated; Function `plot_confusion_matrix` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: ConfusionMatrixDisplay.from_predictions or ConfusionMatrixDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="svm-on-rbf-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="svm-on-rbf-kernel">SVM on rbf Kernel</h2>
+<div class="cell" data-execution_count="12">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SVM Classifier on food_data on rbf kernel</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>svc <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'rbf'</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>svc.fit(X_train,y_train)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> svc.predict(X_test)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy Score:'</span>,accuracy_score(y_test,y_pred))</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Confusion Matrix:'</span>,confusion_matrix(y_test,y_pred))</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Classification Report:'</span>,classification_report(y_test,y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Score: 0.4714828897338403
+Confusion Matrix: [[ 48  25   0   0]
+ [  0  76   0   0]
+ [  0  10   0   0]
+ [  0 104   0   0]]
+Classification Report:               precision    recall  f1-score   support
+
+           0       1.00      0.66      0.79        73
+           1       0.35      1.00      0.52        76
+           2       0.00      0.00      0.00        10
+           3       0.00      0.00      0.00       104
+
+    accuracy                           0.47       263
+   macro avg       0.34      0.41      0.33       263
+weighted avg       0.38      0.47      0.37       263
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<p>Model yields 47% accuracy and the confusion matrix is plotted for the same.</p>
+<div class="cell" data-execution_count="13">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot confusion matrix for svm classifier with labels</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> plot_confusion_matrix</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>plot_confusion_matrix(svc,X_test,y_test,display_labels<span class="op">=</span>[<span class="st">'Emissions (N2O)'</span>,<span class="st">'Emissions (CO2)'</span>,<span class="st">'Emissions (CH4)'</span>,<span class="st">'Biomass burned (dry matter)'</span>],cmap<span class="op">=</span>plt.cm.Blues,ax<span class="op">=</span>ax)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_confusion_matrix is deprecated; Function `plot_confusion_matrix` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: ConfusionMatrixDisplay.from_predictions or ConfusionMatrixDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="svm-on-sigmoid-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="svm-on-sigmoid-kernel">SVM on Sigmoid Kernel</h2>
+<div class="cell" data-execution_count="14">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SVM Classifier on food_data on sigmoid kernel</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>svc <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">'sigmoid'</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>svc.fit(X_train,y_train)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> svc.predict(X_test)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy Score:'</span>,accuracy_score(y_test,y_pred))</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Confusion Matrix:'</span>,confusion_matrix(y_test,y_pred))</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Classification Report:'</span>,classification_report(y_test,y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Score: 0.4600760456273764
+Confusion Matrix: [[ 45  28   0   0]
+ [  0  76   0   0]
+ [  0  10   0   0]
+ [  0 104   0   0]]
+Classification Report:               precision    recall  f1-score   support
+
+           0       1.00      0.62      0.76        73
+           1       0.35      1.00      0.52        76
+           2       0.00      0.00      0.00        10
+           3       0.00      0.00      0.00       104
+
+    accuracy                           0.46       263
+   macro avg       0.34      0.40      0.32       263
+weighted avg       0.38      0.46      0.36       263
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))</code></pre>
+</div>
+</div>
+<p>Model is yielding about 45% accuracy and the confusion matrix is plotted for the same.</p>
+<div class="cell" data-execution_count="15">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot confusion matrix for svm classifier with labels</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> plot_confusion_matrix</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>plot_confusion_matrix(svc,X_test,y_test,display_labels<span class="op">=</span>[<span class="st">'Emissions (N2O)'</span>,<span class="st">'Emissions (CO2)'</span>,<span class="st">'Emissions (CH4)'</span>,<span class="st">'Biomass burned (dry matter)'</span>],cmap<span class="op">=</span>plt.cm.Blues,ax<span class="op">=</span>ax)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/sangeetha/opt/anaconda3/envs/ANLY501/lib/python3.10/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_confusion_matrix is deprecated; Function `plot_confusion_matrix` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: ConfusionMatrixDisplay.from_predictions or ConfusionMatrixDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="svm_files/figure-html/cell-44-output-2.png" class="img-fluid"></p>
+</div>
+</div>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Various kernels produced varying degrees of accuracy. Finally, the linear kernel is best suited for the data with the highest accuracy.</p>
+<p>Various kernels produced varying degrees of accuracy. Finally, the linear kernel is best suited for the data with the highest accuracy. The model predicts the age group of people affected by air pollution in New York City. The second set of data is trained and tested to predict the emission element to the environment due to waste food disposal and crop residue.</p>
 </section>
 
 </main>

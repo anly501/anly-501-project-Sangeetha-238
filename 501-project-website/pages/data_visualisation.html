@@ -51,36 +51,47 @@
     </li> 
   
       <!-- tab without dropdown  -->
-      <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+      <li><a href="../codes/01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
   
       <!-- tab without dropdown  -->
-      <li><a href="./pages/introduction.html">Conclusion</a></li>
+      <li><a href="./Conclusion.html">Conclusion</a></li>
     </ul>
 
     <p>
-        <h3 style="text-align: Center; margin-left: 45px; margin-right: 45px;"> Data Visualisation</h3>
+        <h3 style="text-align: left; margin-left: 45px; margin-right: 45px; color: gray;"> Data Visualisation</h3>
       </p>
       <p style="font-size:14px; margin-left: 55px; margin-right: 55px;">Data visualization "refers to the transformation of figures and raw data into visual objects such as points, bars, line plots, maps, and so on." These visualizations accelerate research and data analysis by combining user-friendly and aesthetically pleasing features.
+        Data visualization is the use of popular graphics to depict data, such as charts, plots, infographics, and even animations. These information visualizations explain complicated data relationships and data-driven insights in an easy-to-understand manner.
         The purpose of data visualization can be divided into three categories: exploration, monitoring, and explanation. While some visualizations can span multiple of these, the majority focus on a single goal.
     </p>
-    <h4 style="text-align: left; margin-left: 55px; margin-right: 55px;"> To Explore</h4>
+    <h4 style="text-align: left; margin-left: 55px; margin-right: 55px; color: gray;"> To Explore</h4>
     <p style="font-size:14px; margin-left: 55px; margin-right: 55px;">
         A data visualization focused on exploration and rapid iteration can assist users who are looking for an open-ended tool to help them find patterns and insights in data. Exploration tools should be tightly linked to tools that collect (extract), clean (transform), and curate (load) data.
     </p>
-    <h4 style="text-align: left; margin-left: 55px; margin-right: 55px;"> To Monitor</h4>
+    <h4 style="text-align: left; margin-left: 55px; margin-right: 55px; color: gray;"> To Monitor</h4>
     <p style="font-size:14px; margin-left: 55px; margin-right: 55px;">
         A data visualization focused on monitoring is best when users need to check on the performance of something. Dashboards, for example, should focus on leading indicators and display information that is linked to useful and direct actions.
     </p>
-    <h4 style="text-align: left; margin-left: 55px; margin-right: 55px;"> To explain</h4>
+    <h4 style="text-align: left; margin-left: 55px; margin-right: 55px; color: gray;"> To explain</h4>
     <p style="font-size:14px; margin-left: 55px; margin-right: 55px;">
         A data visualization focused on explanation is ideal when users want to go beyond the "what" of a problem and investigate the "why." Explanatory visualizations are often handcrafted to help a large audience understand a complex subject and are typically not automatable.
     </p>
+    <p style="font-size:14px; margin-left: 55px; margin-right: 55px;">Something as basic as presenting data graphically may appear to have no drawbacks. However, data might be distorted or misconstrued when displayed in the incorrect data visualization manner. When deciding whether to develop a data visualization, consider both the benefits and drawbacks.
+    <br>
+    <br>
+    Advantages<br>
+    Colors and patterns catch our attention. We can swiftly distinguish between red and blue, as well as squares and circles. Everything in our culture is visual, from art and marketing to TV and movies. Data visualization is another sort of visual art that captures our attention and holds it there. When we look at a chart, we can easily see trends and outliers. When we observe something, we rapidly internalize it. It's narrative with a purpose. If you've ever looked at a big spreadsheet of data and couldn't find a trend, you understand how much more useful a visualization can be.
+  <br>
+  <br>
+  Disadvantages<br>
+While there are many advantages, some of the disadvantages may seem less obvious. For example, when viewing a visualization with many different datapoints, it’s easy to make an inaccurate assumption. Or sometimes the visualization is just designed wrong so that it’s biased or confusing.
+  </p>
 
     <h5 style="font-size:14px; margin-left: 55px; margin-right: 55px;">
         The visualization was done on raw data that I collected from various sources.
     </h5>
 
-    <table class="center" style="width: 75%;">
+    <table class="center" style="width: 85%;">
         <tbody >
             <tr class="center">
                 <th class="center"> wordcloud for recent twitter data</th>
@@ -95,7 +106,12 @@
                 </th>
                 <td class="center">
             <br>
-              <center> Plotted wordcloud for the recent twitter data last 7 days. </center>
+              <center> Plotted wordcloud for the recent twitter data last 7 days. A word cloud is a basic yet useful visual representation object for text processing that displays the most frequently occurring words in larger and bolder letters, as well as in different colors. The smaller the size of the word, the less essential it is.
+              Word clouds are created by removing stopwords, Wordcloud comes with an inbuilt library of stop words, that will automatically remove the stop words from the text.  
+              </center>
+              <center>
+                The twitter data is collected using tweepy library in python. The data for the latest week is collected to stay relevant to today's world and today's opinion climate change.
+              </center>
                <br>
           </td>
               </tr>
@@ -112,7 +128,7 @@
                 </th>
                 <td class="center">
             <br>
-              <center> Plotted wordcloud for the older twitter data since 2015. </center>
+              <center> Plotted wordcloud for the older twitter data since 2015. The twitter for the past 6 years is collected for the same hashtag "climatechage". Wrod clous is plotted for the data and we do see some common words between newest tweets and older tweets, through which we can conclude that opinion on climate change is persistant.</center>
                <br>
           </td>
               </tr>
@@ -129,7 +145,10 @@
             </th>
             <td class="center">
         <br>
-          <center> The graph shows that the temprature has increased in DC alone in the past five years. </center>
+          <center> The historical data for the DC area is collected. Average max temperature for each year is calculated in the data. A graph is plotted against temperature and year to analyse the trend in temperature thrughout the years. This gives insight on temperature change in the data over years in DC area. </center>
+          <center>
+            The graph shows that the maximum average temperature was highest in the year 2021, and the lowest average temperature was in the year 2017. The average temperature has been increasing over the years.
+          </center>
            <br>
       </td>
           </tr>
@@ -146,7 +165,7 @@
             </th>
             <td class="center">
         <br>
-          <center> The graph shows that ozone pollutant in the air has increased in Washington, DC over the last five years. </center>
+          <center> Data is collected to show the pollutants affecting ozone depletion in the air in DC area for the years 2016 through 2021. The record shows that the pollutants have increased in DC area. A graph is plotted agains year and ozone pollutantas and the results show that the pollutant in air has increased significantly over last five years. </center>
            <br>
       </td>
           </tr>
@@ -165,7 +184,7 @@
           </th>
           <td class="center">
       <br>
-        <center> The graph shows how quickly the temperature is rising. The temperature graphs compare 2021 and 2022. </center>
+        <center> A graph is plotted to compare temperature change for just two years, to see how quickly the temperature is incresing. The historical record data for DC is used here too to showcase increse in temperature that results in climate change and global warming. </center>
          <br>
     </td>
         </tr>
@@ -182,7 +201,7 @@
             </th>
             <td class="center">
         <br>
-          <center> The graph indicates the air quality depletion in DC in past two years. </center>
+          <center> The graph indicates the air quality depletion in past two years. A graph is plotted against year and air quality index to see the variation in air quality over the years in United States. The trend shows air quality depletion in the past two years. Pollutants in the air has increased and has reduced the quality of the air we breathe. </center>
            <br>
       </td>
           </tr>
@@ -199,24 +218,46 @@
             </th>
             <td class="center">
         <br>
-          <center> The graph humidity variation in DC in past two years. </center>
+          <center> Comparing humidity variation for the years 2020 and 2021 to analyse the trend and understand the data. The graph shows that there is increse in humidity from the year 2020 to 2021.</center>
            <br>
       </td>
           </tr>
           <tr class="center">
-            <th class="center"> Increase in temperature with increase in Ozone pollutant in air</th>
+            <th class="center"> Emmissions due to crop residue and waste food disposal</th>
             <th class="center"> Description</th>
           </tr>
           <tr class="center">
             <th class=" center"> 
-              <img alt="Graph" height="250px" src="../images/Ozone temp.png" width="450px">
+              <img alt="Graph" height="250px" src="../images/food_element_count.png" width="450px">
               <center>
-                <a href="../images/Ozone temp.png" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> View image</a>
+                <a href="../images/food_element_count.png" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> View image</a>
               </center>
             </th>
             <td class="center">
         <br>
-          <center> The graph depicts increse in temperature with increase in ozone pollutant in the air over 5 years. </center>
+          <center> A lot of harmful elements are released into the environment through residual crop and waste food disposal. The data for United state is collected and the graph is plotted to check the different kinds of emissions and the proportion of each element recorded in the data. </center>
+           <br>
+      </td>
+          </tr> 
+          <tr class="center">
+            <th class="center"> Emmissions of each Domain</th>
+            <th class="center"> Description</th>
+          </tr>
+          <tr class="center">
+            <th class=" center"> 
+              <img alt="Graph" height="250px" src="../images/food_pie.png" width="450px">
+              <center>
+                <a href="../images/food_pie.png" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> View image</a>
+              </center>
+            </th>
+            <td class="center">
+        <br>
+          <center> A pie chart is plotted to understand the different emissions in different domains for crop residue and food disposal. We see that N2o emission is due to Domestic wastewater, co2 is due to inceneration, indusrial waste water has methane and nitrogen emissions. 
+            where as solid food waste has 100% methane emission.
+             </center>
+             <center>
+              Maize, sugarcane, wheat, and Rice residues have nitrogen, methane and biomass burned emissions.
+             </center>
            <br>
       </td>
           </tr> 
@@ -236,5 +277,7 @@
         </tbody>
   
       </table>
+      <h3 style="text-align: left; margin-left: 55px; margin-right: 55px; color: gray;">Conclusion</h2>
+      <p style="font-size:14px; margin-left: 55px; margin-right: 55px;">From the data trends we can come to a conclusion that there has been significant change in temperature and humidity over years. These changes are more than estimated. Human activities imact climate change for example waste food disposal and even something as basic as agriculture practices have harmful effect on environment as they release harmful elements into the environment.</p>
 </html>
     

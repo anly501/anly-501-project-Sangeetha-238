@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.247">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>arm_networking</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="ARM_Networking_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ARM_Networking_files/libs/quarto-html/quarto.js"></script>
+<script src="ARM_Networking_files/libs/quarto-html/popper.min.js"></script>
+<script src="ARM_Networking_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ARM_Networking_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ARM_Networking_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ARM_Networking_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ARM_Networking_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ARM_Networking_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ARM_Networking_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+<link rel="stylesheet" href="../../styles1.css">
+</head>
+
+<body class="fullcontent">
+  <ul class="header">
+    <!-- link back to homepage -->
+    <li><a href="../../index.html">About me</a></li>
+    
+    <!-- tab without dropdwn  -->
+    <li><a href="../../pages/introduction.html">Introduction</a></li>
+
+    <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
+
+    <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Data</a></li>
+
+    <li><a href="../../pages/data-gathering.html">Data-gathering</a></li>
+
+
+    <!-- tab without dropdwn  -->
+    <li><a href="../../pages/data_cleaning.html">Data Cleaning</a></li>
+
+    <!-- tab without dropdwn  -->
+    <li><a href="../../pages/data_visualisation.html">Exploring Data</a></li>
+
+    <li class="dropdwn">
+      <a href="javascript:void(0)" class="drpbtn">Naive Bayes</a>
+      
+      <div class="dropdwn-content">
+          
+      <a href="../../pages/NBR.html">NB with R</a>
+      <a href="../../pages/NBPY.html">NB with python</a>
+      </div>
+  </li>
+
+
+    <!-- tab without dropdwn  -->
+    <li><a href="../01-data-gathering/decision_tree.html">Decision Trees</a></li>
+
+    <!-- tab without dropdwn  -->
+    <li><a href="../01-data-gathering/svm.html">SVM</a></li>
+
+    <li class="dropdwn">
+      <a href="javascript:void(0)" class="drpbtn">Clustering</a>
+      
+      <div class="dropdwn-content">
+          
+      <a href="../01-data-gathering/clustering.html">Clustering</a>
+      <a href="../01-data-gathering/cluster_text.html">Clustering on Text data</a>
+      </div>
+  </li> 
+
+    <!-- tab without dropdwn  -->
+    <li><a href="../01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
+
+    <!-- tab without dropdwn  -->
+    <li><a href="../../pages/Conclusion.html">Conclusion</a></li>
+
+    
+    <!-- tab with dropdwn -->
+    <!-- <li class="dropdwn">
+        <a href="javascript:void(0)" class="drpbtn">local reference</a>
+        
+        <div class="dropdwn-content">
+            
+        <a href="./pages/html-cheatsheet/cheatsheet.html">html</a>
+        <a href="./pages/markdown-cheatsheet/markdown-cheatsheet.html">markdown</a>
+        </div>
+    </li> -->
+    
+    <!-- tab with dropdwn -->
+    
+    <!-- <li class="dropdwn">
+        <a href="javascript:void(0)" class="drpbtn">external links</a>
+        
+        <div class="dropdwn-content">
+        open in new tab use:   <a href="https://www.google.com/" target="_blank">google</a>
+        open in same tab use:  <a href="https://www.google.com/">google</a>
+        <a href="https://www.google.com/" target="_blank">google</a>
+        <a href="    https://www.wikipedia.org/" target="_blank">wikipedia</a>
+    
+        </div>
+    </li> -->
+    
+    
+    </ul>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="arm-and-networking." class="level2">
+<h2 class="anchored" data-anchor-id="arm-and-networking.">ARM and Networking.</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<section id="about-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="about-the-data">About the data</h4>
+<p>The data displays the annual emissions of harmful components to the environment through crop residue and waste food disposal. It consists of Damain and Item, with Items denoting the type of residue or food disposal. The goal of association rule mining on this data is to find patterns, correlations, or associations that occur frequently in the dataset. The purpose is to determine the correlation between the variables in the dataset and to identify the emission or item that produced the emission, as well as the domain to which it belongs. In this scenario, ARM makes it easy to gain insight into the whole connection between the variables in the dataset and aids in the goal of forecasting the emission or its source.</p>
+</section>
+<section id="about-association-rule-mining" class="level4">
+<h4 class="anchored" data-anchor-id="about-association-rule-mining">About Association Rule Mining</h4>
+<p>Association rule learning is a machine learning method that uses rules to discover interesting relationships between variables in huge databases. Its goal is to detect strong rules identified in databases using some interestingness criteria. Association rules are intended to find the rules that determine how or why particular items are associated in any given transaction involving a range of goods.</p>
+</section>
+</section>
+<section id="arm-using-apriori-algorithm." class="level3">
+<h3 class="anchored" data-anchor-id="arm-using-apriori-algorithm.">ARM using Apriori Algorithm.</h3>
+<ul>
+<li><p>Apriori is one of the statistical algorithms that have been developed to implement association rule mining. There are three major components of Apriori algorithm:<br></p>
+<ul>
+<li>Support</li> <br>
+<li>Confidence</li><br>
+<li>Lift</li>
+</ul></li>
+<li><p>Support: Support refers to an item’s default popularity and can be calculated by dividing the number of transactions containing a specific item by the total number of transactions.&nbsp;</p></li>
+<li><p>Confidence: If item A is purchased, confidence refers to the possibility that item B will be purchased as well. It can be computed by dividing the number of transactions in which A and B are purchased together by the total number of transactions in which A is purchased.</p></li>
+<li><p>Lift: Lift, basically tells us the association between the products. Lift of 1 means there is no association between products A and B.</p></li>
+</ul>
+<p>Apriori Algorithm tries to extract all rules associated from each possible combination. Apriori does it with following steps:<br> - Set a minimum value for support and confidence. This indicates that we are only interested in identifying rules for items that have a specific default existence and a minimum value for co-occurrence with other items<br> - Extract all the subsets having higher value of support than minimum threshold.<br> - Select all the rules from the subsets with confidence value higher than minimum threshold.<br> - Order the rules by descending order of Lift.</p>
+</section>
+<section id="importing-required-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="importing-required-libraries">Importing Required Libraries</h3>
+<div class="cell" data-execution_count="171">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> apyori <span class="im">import</span> apriori</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="read-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-data">Read the data</h3>
+<div class="cell" data-execution_count="172">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/food_crop_data.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="172">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Domain</th>
+      <th>Area</th>
+      <th>Element</th>
+      <th>Item</th>
+      <th>Year</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1990</td>
+      <td>10.629803</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1991</td>
+      <td>10.934600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1992</td>
+      <td>11.138956</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1993</td>
+      <td>11.335046</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Food systems waste disposal</td>
+      <td>United States of America</td>
+      <td>Emissions (N2O)</td>
+      <td>Domestic wastewater</td>
+      <td>1994</td>
+      <td>11.754348</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="173">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        df[col][i] <span class="op">=</span> col <span class="op">+</span> <span class="st">'_'</span> <span class="op">+</span> <span class="bu">str</span>(df[col][i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="apriori-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="apriori-in-python">Apriori in python</h3>
+<p>For Apriori algorithm we need our data to be in the form of a list, To convert our data set into a list we use the folllowing code.</p>
+<div class="cell" data-execution_count="174">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    records.append([<span class="bu">str</span>(df.values[i,j]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">5</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The Apriori algorithm is then applied to the dataset. To accomplish this, we can use the apriori class from the apyori package that we loaded. Some argument values are required for the apriori class to work. The first parameter is a list of lists from which you want to extract rules. The min support parameter is the second one. This parameter is used to select items with support values greater than the parameter’s value. Following that, the min confidence parameter filters out rules with confidence larger than the parameter’s set confidence threshold. Similarly, the min lift argument defines the minimal lift value for the rules that have been shortlisted. Finally, the min length argument sets the minimum amount of items you want in the collection.</p>
+<div class="cell" data-execution_count="177">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>association_rules <span class="op">=</span> apriori(records, min_support<span class="op">=</span><span class="fl">0.01</span>, min_confidence<span class="op">=</span><span class="fl">0.1</span>, min_lift<span class="op">=</span><span class="dv">2</span>, min_length<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>association_results <span class="op">=</span> <span class="bu">list</span>(association_rules)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Outputting the rules.</p>
+<div class="cell" data-execution_count="178">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> association_results:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first index of the inner list</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Contains base item and add item</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    pair <span class="op">=</span> item[<span class="dv">0</span>] </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    items <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> pair]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Rule: "</span> <span class="op">+</span> items[<span class="dv">0</span>] <span class="op">+</span> <span class="st">" -&gt; "</span> <span class="op">+</span> items[<span class="dv">1</span>])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#second index of the inner list</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Support: "</span> <span class="op">+</span> <span class="bu">str</span>(item[<span class="dv">1</span>]))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#third index of the list located at 0th</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#of the third index of the inner list</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Confidence: "</span> <span class="op">+</span> <span class="bu">str</span>(item[<span class="dv">2</span>][<span class="dv">0</span>][<span class="dv">2</span>]))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lift: "</span> <span class="op">+</span> <span class="bu">str</span>(item[<span class="dv">2</span>][<span class="dv">0</span>][<span class="dv">3</span>]))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"====================================="</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rule: Domain_Food systems waste disposal -&gt; Element_Emissions (CO2)
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Domestic wastewater
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Incineration
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Industrial wastewater
+Support: 0.07085714285714285
+Confidence: 0.4
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Solid food waste
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Element_Emissions (CH4) -&gt; Item_Solid food waste
+Support: 0.03542857142857143
+Confidence: 0.10264900662251655
+Lift: 2.8973509933774833
+=====================================
+Rule: Item_Incineration -&gt; Element_Emissions (CO2)
+Support: 0.03542857142857143
+Confidence: 1.0
+Lift: 28.225806451612904
+=====================================
+Rule: Element_Emissions (N2O) -&gt; Item_Domestic wastewater
+Support: 0.03542857142857143
+Confidence: 0.10264900662251655
+Lift: 2.8973509933774833
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Area_United States of America
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Domestic wastewater
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Incineration
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Area_United States of America
+Support: 0.07085714285714285
+Confidence: 0.4
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Solid food waste
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Element_Emissions (CH4) -&gt; Area_United States of America
+Support: 0.03542857142857143
+Confidence: 0.10264900662251655
+Lift: 2.8973509933774833
+=====================================
+Rule: Item_Incineration -&gt; Area_United States of America
+Support: 0.03542857142857143
+Confidence: 1.0
+Lift: 28.225806451612904
+=====================================
+Rule: Element_Emissions (N2O) -&gt; Item_Domestic wastewater
+Support: 0.03542857142857143
+Confidence: 0.10264900662251655
+Lift: 2.8973509933774833
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Element_Emissions (CH4)
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Element_Emissions (CH4)
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Incineration
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Element_Emissions (N2O) -&gt; Domain_Food systems waste disposal
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Element_Emissions (N2O) -&gt; Domain_Food systems waste disposal
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Element_Emissions (CH4)
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Element_Emissions (CH4)
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Domain_Food systems waste disposal -&gt; Item_Incineration
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Element_Emissions (N2O) -&gt; Domain_Food systems waste disposal
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================
+Rule: Element_Emissions (N2O) -&gt; Domain_Food systems waste disposal
+Support: 0.03542857142857143
+Confidence: 0.2
+Lift: 5.645161290322581
+=====================================</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="179">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reformat_results(results):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#CLEAN-UP RESULTS </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    keep<span class="op">=</span>[]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(results)):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(<span class="bu">list</span>(results[i]))):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># print(results)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span>(j<span class="op">&gt;</span><span class="dv">1</span>):</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(<span class="bu">list</span>(results[i][j]))):</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span>(<span class="bu">len</span>(results[i][j][k][<span class="dv">0</span>])<span class="op">!=</span><span class="dv">0</span>):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                        <span class="co">#print(len(results[i][j][k][0]),results[i][j][k][0])</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                        rhs<span class="op">=</span><span class="bu">list</span>(results[i][j][k][<span class="dv">0</span>])</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                        lhs<span class="op">=</span><span class="bu">list</span>(results[i][j][k][<span class="dv">1</span>])</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                        conf<span class="op">=</span><span class="bu">float</span>(results[i][j][k][<span class="dv">2</span>])</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                        lift<span class="op">=</span><span class="bu">float</span>(results[i][j][k][<span class="dv">3</span>])</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                        keep.append([rhs,lhs,supp,conf,supp<span class="op">*</span>conf,lift])</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># keep.append()</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span>(j<span class="op">==</span><span class="dv">1</span>):</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                supp<span class="op">=</span>results[i][j]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(keep, columns <span class="op">=</span>[<span class="st">"rhs"</span>,<span class="st">"lhs"</span>,<span class="st">"supp"</span>,<span class="st">"conf"</span>,<span class="st">"supp x conf"</span>,<span class="st">"lift"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="networkx-graph" class="level3">
+<h3 class="anchored" data-anchor-id="networkx-graph">Networkx Graph:</h3>
+<p>By definition Graph is a collection of nodes connected by edges. In NetworkX, nodes can be any hashable object, A graph can be grown by addig nodes to the graph and adding edges to them. Can be added one at a time or can be iterated to add them together. We can examine edges and nodes using G.edges and G.nodes where G is the graph. Here we are trying to form a network of association rules obtained earlier. Our nodes will be the association rules and our graph represents the relation between them.</p>
+<div class="cell" data-execution_count="180">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_network(df):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(df)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#BUILD GRAPH</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> nx.DiGraph()  <span class="co"># DIRECTED</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for column in df.columns:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        lhs<span class="op">=</span><span class="st">"_"</span>.join(row[<span class="dv">1</span>][<span class="dv">0</span>])</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        rhs<span class="op">=</span><span class="st">"_"</span>.join(row[<span class="dv">1</span>][<span class="dv">1</span>])</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        conf<span class="op">=</span>row[<span class="dv">1</span>][<span class="dv">3</span>]<span class="op">;</span> <span class="co">#print(conf)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(lhs <span class="kw">not</span> <span class="kw">in</span> G.nodes): </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            G.add_node(lhs)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(rhs <span class="kw">not</span> <span class="kw">in</span> G.nodes): </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            G.add_node(rhs)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        edge<span class="op">=</span>(lhs,rhs)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> edge <span class="kw">not</span> <span class="kw">in</span> G.edges:</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            G.add_edge(lhs, rhs, weight<span class="op">=</span>conf)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(G.nodes)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(G.edges)</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="184">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_network(G):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SPECIFIY X-Y POSITIONS FOR PLOTTING</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    pos<span class="op">=</span>nx.random_layout(G)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#GENERATE PLOT</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    fig.set_size_inches(<span class="dv">45</span>, <span class="dv">45</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#assign colors based on attributes</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    weights_e   <span class="op">=</span> [G[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u,v <span class="kw">in</span> G.edges()]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SAMPLE CMAP FOR COLORS </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span>plt.cm.get_cmap(<span class="st">'Blues'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    colors_e    <span class="op">=</span> [cmap(G[u][v][<span class="st">'weight'</span>]<span class="op">*</span><span class="dv">10</span>) <span class="cf">for</span> u,v <span class="kw">in</span> G.edges()]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#PLOT</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    nx.draw(</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    G,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    node_color<span class="op">=</span><span class="st">'crimson'</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    edgecolors<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    edge_color<span class="op">=</span>colors_e,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    node_size<span class="op">=</span><span class="dv">7000</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    linewidths<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    font_size<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    font_color<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span>weights_e,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    with_labels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    pos<span class="op">=</span>pos,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"NetworkX Graph for Association Rules"</span>, fontsize<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="185">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> reformat_results(association_results)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Results</span><span class="ch">\n</span><span class="st">"</span>,<span class="bu">len</span>(association_results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Results
+ 26</code></pre>
+</div>
+</div>
+<p>A network is plotted to understand the association and relation between the variables.</p>
+<div class="cell" data-execution_count="186">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> convert_to_network(result_df)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plot_network(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="ARM_Networking_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Association rule mining algorithms such as Apriori are very useful for finding simple associations between our data items. The goal was to find the association rules between the variables of data set, a lot of interesting asoociations were found after applying apriori to the data set. For example, <br> - if the Domain is food system disposal, then the emission is most likel Carbon dioxide.<br> - If the Domain is food system disposal is associated with idustrial water as they have the common emission.<br> - If the item is inceneration then it is most likely to be solid food disposal so on..<br> The model gives insight on how each variable is linked and how these relations can be used for better understanding and analysis.<br></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

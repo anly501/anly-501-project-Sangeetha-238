@@ -53,17 +53,34 @@
         </li> 
       
           <!-- tab without dropdown  -->
-          <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+          <li><a href="../codes/01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
       
           <!-- tab without dropdown  -->
-          <li><a href="./pages/introduction.html">Conclusion</a></li>
+          <li><a href="./Conclusion.html">Conclusion</a></li>
         </ul>
           <p>
-            <h3 style="text-align: Center; margin-left: 35px; margin-right: 35px;"> Data cleaning</h3>
+            <h3 style="text-align: left; margin-left: 60px; margin-right: 60px; color: gray;"> Data cleaning</h3>
           </p>
-          <p style="font-size:14px; margin-left: 35px; margin-right: 35px;">Data cleansing or data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records from a record set, table, or database and refers to identifying incomplete, incorrect, inaccurate or irrelevant parts of the data and then replacing, modifying, or deleting the dirty or coarse data.
-            After cleansing, a data set should be consistent with other similar data sets in the system. The inconsistencies detected or removed may have been originally caused by user entry errors, by corruption in transmission or storage, or by different data dictionary definitions of similar entities in different stores.</p>
-          <table class="center" style="width: 75%;">
+          <p style="font-size:14px; margin-left: 60px; margin-right: 60px;">Data cleansing or data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records from a record set, table, or database and refers to identifying incomplete, incorrect, inaccurate or irrelevant parts of the data and then replacing, modifying, or deleting the dirty or coarse data.
+            After cleansing, a data set should be consistent with other similar data sets in the system. The inconsistencies detected or removed may have been originally caused by user entry errors, by corruption in transmission or storage, or by different data dictionary definitions of similar entities in different stores.
+            f data is incorrect, outcomes and algorithms are unreliable, even though they may look correct. There is no one absolute way to prescribe the exact steps in the data cleaning process because the processes will vary from dataset to dataset. But it is crucial to establish a template for your data cleaning process so you know you are doing it the right way every time.</p>
+            <h2 style="font-size:14px; margin-left: 60px; margin-right: 60px; color: gray;"> Difference between cleaning and transformation</h2>
+            <p style="font-size:14px; margin-left: 60px; margin-right: 60px;">Data cleansing is the process of removing data from your dataset that does not belong there. The process of changing data from one format or structure to another is known as data transformation. Transformation processes, often known as data wrangling or data munging, involve changing and mapping data from one "raw" data type to another for warehousing and analysis. This article focuses on the data cleansing processes.</p>
+            <h2 style="font-size:14px; margin-left: 60px; margin-right: 60px; color: gray;">Cleaning the data:</h2>
+            <p style="font-size:14px; margin-left: 60px; margin-right: 60px;">
+              Remove any undesirable observations from your dataset, such as duplicates or irrelevant observations. Duplicate observations are most likely to occur during data collecting. Duplicate data might occur when you mix data sets from numerous sources, scrape data, or receive data from clients or multiple departments. One of the most important aspects to consider in this procedure is de-duplication. Irrelevant observations are those that do not fit into the specific situation you are attempting to evaluate. For example, if you wish to examine data about millennial clients but your dataset includes observations from earlier generations, you might eliminate those observations. This can improve analysis efficiency and reduce distraction from your core goal, as well as provide a more manageable and performant dataset.<br><br>
+              When you measure or transfer data, you may detect unusual naming conventions, typos, or wrong capitalization. These inconsistencies can result in incorrectly classified categories or classes. For example, "N/A" and "Not Applicable" may both exist, but they should be examined as one category.
+            <br>
+          <br>
+          There will frequently be one-off observations that do not appear to fit within the data you are studying. If you have a valid reason to eliminate an outlier, such as incorrect data entry, doing so will improve the performance of the data you are working with. However, the presence of an outlier might sometimes prove a theory you're working on. Remember that the existence of an outlier does not imply that it is erroneous. This step is required to determine the accuracy of the number. Consider deleting an outlier if it appears to be unimportant for analysis or is a mistake.
+          <br>
+          <br>
+          Missing data cannot be ignored since many algorithms do not accept missing values. There are several approaches to dealing with missing data. Both are not ideal, but they can be considered.
+
+As a first alternative, you can remove observations with missing values; however, doing so will result in the loss of information, so keep this in mind before you do so.
+As a second approach, you can fill in missing values based on other observations; however, there is a risk of losing data integrity because you may be acting on assumptions rather than actual facts.
+        </p>
+            <table class="center" style="width: 80%;">
             <tbody >
               <tr class="center">
                 <th class="center"> Clean Data Set</th>
@@ -85,7 +102,7 @@
                 <td class="center">
                   <h3> <center><b>Python Twitter API cleaning</b></center></h3>
             <br>
-              <center> I used the hashtag "climatechange" to pull data from Twitter for the last seven days as well as the previous five years. Eliminated unnecessary columns, punctuation, and emojis from the text. utilized Countvectorizer and wordcloud to analyze the most frequently used words. </center>
+              <center> The hashtag "climatechange" is used to pull data from Twitter for the last seven days as well as the previous five years. Eliminated unnecessary columns, punctuation, and emojis from the text. utilized Countvectorizer and wordcloud to analyze the most frequently used words. </center>
                <br>
                <center>The photo attached is a dataframe snippent containing all the recent tweets with hashtag climate change. </center>
                <br>
@@ -117,8 +134,45 @@
                 <center><a href="../codes/01-data-gathering/data_cleaning_DC_forecast.html">R code </a></center>
                 </td>
               </tr>
+              <tr class="center">
+                <td class="center">
+                  
+                  <tr class="center">
+                    <th class=" center"> 
+                      <img alt="Clean data" height="250px" src="../images/DC_2020_clean.png" width="450px">
+                      <center>
+                        <a href="../images/Food_crop_data.png" style="font-size:14px; margin-top: 20px; margin-bottom: 30px;"> View</a>
+                      </center>
+                <center><a href="../data/food_crop_data.csv"> Crop residue and Food disposal Emission Data </a></center>
+
+                </td> 
+                <td class="center">
+                  <h3 class="center"> 
+                    <center>
+                      <b>Record cleaning using Python</b></center></h3>
+                <center>Each obtained data set's records are cleaned using Python. Unwanted columns are eliminated, duplicates are verified for, and necessary datasets are combined to create correlation between the data. Checked for null values andd removed/replaced null values wherever necessary.</center>
+                <br>
+                <center><a href="./food_crop_data_cleaning.html">Python code </a></center>
+                </td>
+              </tr>
               
             </tbody>
       
           </table>
+          <h2 style="text-align: left; margin-left: 60px; margin-right: 60px; color: gray; font-size:14px;">How Twitter data is cleaned in Python</h2>
+          <p style="text-align: left; margin-left: 60px; margin-right: 60px; font-size:14px;">There is further information such as retweet, Hashtag, Username, and changed tweets in the Twitter databases. This is all ignored and removed from the dataset.
+            <br>
+            Stop words are generally thought to be a “single set of words”. We would not want these words taking up space in our database. For this using NLTK and using a “Stop Word Dictionary” . The stop words are removed as they are not useful.
+            <br>
+            All the punctuation marks according to the priorities should be dealt with. For example: “.”, “,”,”?” are important punctuations that should be retained while others need to be removed.<br>
+            In the twitter datasets, there is also other information as retweet, Hashtag, Username and Modified tweets. All of this is ignored and removed from the dataset.<br>
+            We should get rid of these duplicates, which we have already done. It is sometimes preferable to delete duplicate data using a set of unique IDs. For example, the chances of two transactions occurring at the same time, with the same square footage, price, and build year are nearly nil.
+          </p>
+          <h2 style="text-align: left; margin-left: 60px; margin-right: 60px; color: gray; font-size:14px;">How Record data is cleaned in Python and R</h2>
+          <p style="text-align: left; margin-left: 60px; margin-right: 60px;font-size:14px;">After loading the data the unwanted columns are identified and removed. Two datasets are merged on the same columns if existed.
+          <br>
+          The data is checked for null values and if any null values are found they are replaced with the mean of the column. Some null values that don't add value to the data are removed.
+          Checked for the outliers and cleaned the data by removing the outliers.
+         </p>
+
 </html>

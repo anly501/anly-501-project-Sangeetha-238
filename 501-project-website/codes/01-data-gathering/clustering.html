@@ -100,7 +100,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles1.css">
 </head>
 
 <body class="fullcontent">
@@ -108,7 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <!-- link back to homepage -->
     <li><a href="../../index.html">About me</a></li>
     
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../../pages/introduction.html">Introduction</a></li>
 
     <li><a href="https://github.com/anly501/anly-501-project-Sangeetha-238">Code</a></li>
@@ -118,16 +118,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <li><a href="../../pages/data-gathering.html">Data-gathering</a></li>
 
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../../pages/data_cleaning.html">Data Cleaning</a></li>
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../../pages/data_visualisation.html">Exploring Data</a></li>
 
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+    <li class="dropdwn">
+      <a href="javascript:void(0)" class="drpbtn">Naive Bayes</a>
       
-      <div class="dropdown-content">
+      <div class="dropdwn-content">
           
       <a href="../../pages/NBR.html">NB with R</a>
       <a href="../../pages/NBPY.html">NB with python</a>
@@ -135,46 +135,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
 
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../01-data-gathering/decision_tree.html">Decision Trees</a></li>
 
-    <!-- tab without dropdown  -->
+    <!-- tab without dropdwn  -->
     <li><a href="../01-data-gathering/svm.html">SVM</a></li>
 
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Clustering</a>
+    <li class="dropdwn">
+      <a href="javascript:void(0)" class="drpbtn">Clustering</a>
       
-      <div class="dropdown-content">
+      <div class="dropdwn-content">
           
       <a href="../01-data-gathering/clustering.html">Clustering</a>
       <a href="../01-data-gathering/cluster_text.html">Clustering on Text data</a>
       </div>
   </li> 
 
-    <!-- tab without dropdown  -->
-    <li><a href="./pages/introduction.html">ARM and Networking</a></li>
+    <!-- tab without dropdwn  -->
+    <li><a href="../01-data-gathering/ARM_Networking.html">ARM and Networking</a></li>
 
-    <!-- tab without dropdown  -->
-    <li><a href="./pages/introduction.html">Conclusion</a></li>
+    <!-- tab without dropdwn  -->
+    <li><a href="../../pages/Conclusion.html">Conclusion</a></li>
 
     
-    <!-- tab with dropdown -->
-    <!-- <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">local reference</a>
+    <!-- tab with dropdwn -->
+    <!-- <li class="dropdwn">
+        <a href="javascript:void(0)" class="drpbtn">local reference</a>
         
-        <div class="dropdown-content">
+        <div class="dropdwn-content">
             
         <a href="./pages/html-cheatsheet/cheatsheet.html">html</a>
         <a href="./pages/markdown-cheatsheet/markdown-cheatsheet.html">markdown</a>
         </div>
     </li> -->
     
-    <!-- tab with dropdown -->
+    <!-- tab with dropdwn -->
     
-    <!-- <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">external links</a>
+    <!-- <li class="dropdwn">
+        <a href="javascript:void(0)" class="drpbtn">external links</a>
         
-        <div class="dropdown-content">
+        <div class="dropdwn-content">
         open in new tab use:   <a href="https://www.google.com/" target="_blank">google</a>
         open in same tab use:  <a href="https://www.google.com/">google</a>
         <a href="https://www.google.com/" target="_blank">google</a>
@@ -435,7 +435,8 @@ dtype: int64</code></pre>
 <h4 class="anchored" data-anchor-id="hyper-parameter-tuning.">Hyper-parameter tuning.</h4>
 <p>Here, hyper parameter tuning method used is <strong>Elbow Method</strong>. This method is chosen because the dimension in the data set is small and elbow method is good for data with small dimension. For each value of k an average score for all cluster is computed. Distortion and inertia is computed to find the nearest centroid for each value.</p>
 <p>Finding the optimal K value for the data.</p>
-<p>K-means is the simplest clustering algorithm. It forms K clusters for n number of records. The alogorithm works as follows: <br> - First k is initialized randomly. It is called cluster centriods. In the code below this k value is 1 to 10. - For each k, inertia is calculated. Inertia is calculated by sqauring and summing the distance between each data point and its centroid. - A good model is one with low inertia and less number of clusters. - Distortion for each k value is calculated. It is the distance between most dominating centroid and sqaured distances between each observation. - Distortion should be low for optimal clusters.</p>
+<p>K-means is the simplest clustering algorithm. It forms K clusters for n number of records. The alogorithm works as follows: <br>
+   - First k is initialized randomly. It is called cluster centriods. In the code below this k value is 1 to 10.<br> - For each k, inertia is calculated. Inertia is calculated by sqauring and summing the distance between each data point and its centroid.<br> - A good model is one with low inertia and less number of clusters.<br> - Distortion for each k value is calculated. It is the distance between most dominating centroid and sqaured distances between each observation.<br> - Distortion should be low for optimal clusters.</p>
 <div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
@@ -542,8 +543,8 @@ dtype: int64</code></pre>
 <ul>
 <li>A graph is plotted against the k clusters and, inertia and distortion respectively</li>
 <li>We can see that the graph decreases linearly after k=9.</li>
-<li>Therefore, optimal k is chosen as 9.</li>
-</ul>
+<li>Therefore, optimal k is chosen as 9.</li> <br>
+</ul><br>
 </section>
 <section id="k-means-for-9-clusters." class="level4">
 <h4 class="anchored" data-anchor-id="k-means-for-9-clusters.">K means for 9 clusters.</h4>
@@ -568,8 +569,8 @@ dtype: int64</code></pre>
 <section id="limitations-of-k-means" class="level4">
 <h4 class="anchored" data-anchor-id="limitations-of-k-means">Limitations of K-means:</h4>
 <ul>
-<li>K-means work well only on numerical data.</li>
-<li>It assumes that each cluster has almost equal number of obsrvation.</li>
+<li>K-means work well only on numerical data.</li><br>
+<li>It assumes that each cluster has almost equal number of obsrvation.</li><br>
 </ul>
 </section>
 </section>
